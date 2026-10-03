@@ -11,7 +11,9 @@ La especificación completa está en `docs/PORTFOLIO_SPEC.md`. Consúltala (no l
 - Diseño, paleta, glass, tipografía → §7
 - Accesibilidad → §8 · Rendimiento → §9 · Criterios de aceptación → §11
 
-Si este archivo y la spec se contradicen, manda la spec.
+La spec manda en contenido y diseño; `docs/PLAN.md` manda en arquitectura y orden de trabajo. Ante un conflicto entre ellos, preguntar.
+
+Plan y tareas en docs/PLAN.md: lee solo la tarea en curso.
 
 ## Reglas que no se negocian
 
@@ -33,7 +35,8 @@ Scripts previstos (todavía no existen; se crean con el andamiaje):
 - `npm run lint`: ESLint + Prettier
 - `npm run check`: `astro check` (tipos)
 
-Antes de cada commit tienen que pasar `lint` y `build`.
+- El hook de pre-commit ejecuta `lint` + `check` en cada commit.
+- `npm run build` debe pasar antes de hacer merge a `main`.
 
 ## Convenciones
 
@@ -46,7 +49,7 @@ Antes de cada commit tienen que pasar `lint` y `build`.
 ## Git
 
 - Conventional Commits (`feat:`, `fix:`, `chore:`, `docs:`).
-- Una rama por funcionalidad (`feat/...`, `fix/...`); merge directo a `main` cuando `lint` y `build` pasen. Sin Pull Requests salvo que se pidan.
+- Una rama por funcionalidad (`feat/...`, `fix/...`); merge directo a `main` cuando `build` pase (lint y check los garantiza el hook). Sin Pull Requests salvo que se pidan.
 - **Confirmar con el usuario qué entra en cada commit** antes de hacerlo.
 - Nunca versionar `ContenidoMedia/`: está en `.gitignore`. Solo se versiona lo que acaba en `src/assets/` y `public/`.
 
