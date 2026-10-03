@@ -29,8 +29,8 @@ Sitio web personal que funcione como **prueba de solvencia en ingeniería de sof
 - **React:** solo como islas puntuales si hay interactividad real. Por defecto, componentes Astro sin JS.
 - **Idiomas:** español (por defecto) e inglés. Rutas `/es/` y `/en/`, con `hreflang` y selector visible.
 - **Contenido separado del código:** textos en `src/content/es.json` y `src/content/en.json` (o content collections de Astro). Los componentes leen de ahí; no hay texto escrito dentro de componentes.
-- **Hosting:** Cloudflare Pages o Vercel, desplegando desde GitHub en cada push a `main`. Primero en subdominio gratuito, después dominio propio.
-- **Dominio objetivo:** `guillermopalacios.dev` (pendiente de comprobar disponibilidad). `.dev` exige HTTPS, que el hosting ya ofrece.
+- **Hosting:** GitHub Pages, desplegado con GitHub Actions en cada push a `main`. Repositorio previsto: `guillermo-palacios.github.io`. Primero en el subdominio gratuito de GitHub Pages, después dominio propio.
+- **Dominio objetivo:** `guillermopalacios.dev`, pendiente de conectar más adelante (y de comprobar disponibilidad). `.dev` exige HTTPS, que GitHub Pages ya ofrece.
 - **Sin:** WebGL/three.js, librerías de animación, librerías de UI o de iconos completas, backend, CMS, formulario de contacto (en esta fase).
 
 ## 4. Datos personales y enlaces
@@ -201,7 +201,7 @@ Objetivos de trabajo, no cifras garantizadas:
 - TypeScript en modo estricto, ESLint y Prettier, con scripts `dev`, `build`, `lint` y `check`.
 - Componentes pequeños y modulares; sin texto de contenido dentro de los componentes.
 - Commits en formato Conventional Commits (`feat:`, `fix:`, `chore:`, `docs:`).
-- Ramas por funcionalidad y PR hacia `main`. Antes de cada commit: `lint` y `build` deben pasar.
+- Ramas por funcionalidad y merge directo a `main`, sin PR salvo que se pidan. Antes de cada commit: `lint` y `build` deben pasar.
 - Confirmar con el usuario qué entra en cada commit durante las primeras sesiones.
 
 ## 11. Criterios de aceptación (por sección)

@@ -59,7 +59,6 @@ Antes de cada commit tienen que pasar `lint` y `build`.
 
 - Contiene CV (PDF), capturas de MoodNest, documentación del TFG y retrato. **No lo leas salvo que la tarea lo requiera.**
 - Imágenes: optimizar a AVIF/WebP y colocar en `src/assets/`. CV: copiar a `public/`.
-- Decisión pendiente: si `ContenidoMedia/` se versiona o se añade a `.gitignore` (pregunta antes de commitear su contenido).
 
 ## Despliegue
 
