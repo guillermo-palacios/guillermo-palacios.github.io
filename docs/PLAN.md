@@ -92,7 +92,7 @@ src/
 
 ## 6. Calidad
 - **TS:** `astro/tsconfigs/strictest`. Descartado `strict`, porque `strictest` añade `noUncheckedIndexedAccess`.
-- **ESLint (flat config):** `typescript-eslint`, `eslint-plugin-astro` y `eslint-plugin-jsx-a11y` (`jsx-a11y-strict`), con `eslint-config-prettier` al final.
+- **ESLint (flat config):** `typescript-eslint`, `eslint-plugin-astro` y `eslint-plugin-jsx-a11y` (`jsx-a11y-strict`), con `eslint-config-prettier` al final. ESLint 10, que es el que exige `eslint-plugin-astro` 3. `eslint-plugin-jsx-a11y` 6.10.2 aún declara ESLint ≤ 9 como peer, así que `overrides` en `package.json` lo alinea con el ESLint del proyecto. Se ha comprobado que sus reglas funcionan. Descartado: ESLint 9, que ya no tiene soporte y obliga a `eslint-plugin-astro` 1.x, con avisos de seguridad.
 - **Prettier:** `endOfLine: "lf"`, `prettier-plugin-astro` y `prettier-plugin-tailwindcss`. Además, `.editorconfig` y `.vscode/extensions.json`.
 - **`.prettierignore`:** `docs/`, `ContenidoMedia/`, `dist/`, `.astro/`, `CLAUDE.md` y `package-lock.json`. Se elige esto frente a formatear los .md porque la spec y CLAUDE.md son documentos de referencia editados a mano. Prettier reflowaría tablas y listas, generaría diffs de ruido en el documento que manda sobre el contenido y podría alterar comparaciones literales («textos idénticos a la spec»). El código, que es lo que importa, sigue formateado.
 - **Scripts:** `dev`, `build`, `preview`, `check` (`astro check`), `lint` (`eslint . && prettier --check .`), `format` y `prepare` (`git config core.hooksPath .githooks`).
@@ -111,7 +111,7 @@ Cada tarea va en su propia rama, con el contenido del commit confirmado contigo 
 
 - [x] **1. `chore/scaffold`**: Astro + TS strictest + Tailwind v4 + sitemap + `astro.config` + `src/config.ts` (`SITE_INDEXABLE=false`); página placeholder con `noindex`.
   *Acepta:* `npm run dev` sirve la página; `build` y `check` pasan; `dist/` contiene `noindex`.
-- [ ] **2. `chore/quality`**: ESLint, Prettier, `.prettierignore`, `.editorconfig`, hook; spec §10 (hook = lint + check, build antes del merge) y §9 (nota: tema forzado a oscuro hasta la tarea 13).
+- [x] **2. `chore/quality`**: ESLint, Prettier, `.prettierignore`, `.editorconfig`, hook; spec §10 (hook = lint + check, build antes del merge) y §9 (nota: tema forzado a oscuro hasta la tarea 13).
   *Acepta:* `lint` pasa; un commit con un error de lint queda bloqueado; LF; spec, CLAUDE.md y plan coinciden.
 - [ ] **3. `chore/deploy`**: workflow de Pages.
   *Acepta:* un push a `main` publica el placeholder (con `noindex`) en `guillermo-palacios.github.io`.

@@ -1,0 +1,3 @@
+#!/bin/sh
+# Blocks the commit if lint (ESLint + Prettier) or type checks fail.
+npm run lint && npm run check

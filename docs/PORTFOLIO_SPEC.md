@@ -195,13 +195,14 @@ Objetivos de trabajo, no cifras garantizadas:
 - Imágenes AVIF/WebP con `width`/`height` y `srcset`; hero con `fetchpriority="high"`; capturas con `loading="lazy"`.
 - Iconos en SVG inline. Script inline mínimo en `<head>` para aplicar el tema sin parpadeo.
 - Tema: sigue `prefers-color-scheme` por defecto, toggle manual guardado en `localStorage`.
+  - *Nota temporal:* hasta la tarea 13 de `docs/PLAN.md` (pulido del tema claro), el tema se fuerza a oscuro salvo elección manual, para no mostrar un tema claro a medio pulir. En la tarea 13 se activa `prefers-color-scheme` y se elimina esta nota.
 
 ## 10. Calidad de código y control de versiones
 
-- TypeScript en modo estricto, ESLint y Prettier, con scripts `dev`, `build`, `lint` y `check`.
+- TypeScript en modo estricto (`strictest`), ESLint y Prettier, con scripts `dev`, `build`, `lint` y `check`.
 - Componentes pequeños y modulares; sin texto de contenido dentro de los componentes.
 - Commits en formato Conventional Commits (`feat:`, `fix:`, `chore:`, `docs:`).
-- Ramas por funcionalidad y merge directo a `main`, sin PR salvo que se pidan. Antes de cada commit: `lint` y `build` deben pasar.
+- Ramas por funcionalidad y merge directo a `main`, sin PR salvo que se pidan. Un hook de pre-commit ejecuta `lint` y `check` en cada commit; `build` debe pasar antes de cada merge a `main`.
 - Confirmar con el usuario qué entra en cada commit durante las primeras sesiones.
 
 ## 11. Criterios de aceptación (por sección)

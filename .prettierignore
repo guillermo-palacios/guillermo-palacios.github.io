@@ -1,0 +1,6 @@
+docs/
+ContenidoMedia/
+dist/
+.astro/
+CLAUDE.md
+package-lock.json

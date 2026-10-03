@@ -24,18 +24,17 @@ Plan y tareas en docs/PLAN.md: lee solo la tarea en curso.
 
 ## Stack
 
-Astro + TypeScript (strict) + Tailwind CSS. Salida 100 % estática. Rutas `/es/` (por defecto) y `/en/` con `hreflang`.
+Astro + TypeScript (`strictest`) + Tailwind CSS. Salida 100 % estática. Rutas `/es/` (por defecto) y `/en/` con `hreflang`.
 
 ## Comandos
 
-Scripts previstos (todavía no existen; se crean con el andamiaje):
-
 - `npm run dev`: servidor local
 - `npm run build`: build de producción
-- `npm run lint`: ESLint + Prettier
+- `npm run lint`: ESLint + Prettier (`--check`)
+- `npm run format`: aplica Prettier
 - `npm run check`: `astro check` (tipos)
 
-- El hook de pre-commit ejecuta `lint` + `check` en cada commit.
+- El hook de pre-commit (`.githooks/pre-commit`, activado por `npm install` vía `prepare`) ejecuta `lint` + `check` en cada commit.
 - `npm run build` debe pasar antes de hacer merge a `main`.
 
 ## Convenciones
