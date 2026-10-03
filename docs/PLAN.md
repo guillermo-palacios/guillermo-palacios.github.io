@@ -109,7 +109,7 @@ src/
 ## 8. Tareas
 Cada tarea va en su propia rama, con el contenido del commit confirmado contigo y merge a `main` cuando `build` pasa. Al completar una tarea se marca su casilla.
 
-- [ ] **1. `chore/scaffold`**: Astro + TS strictest + Tailwind v4 + sitemap + `astro.config` + `src/config.ts` (`SITE_INDEXABLE=false`); página placeholder con `noindex`.
+- [x] **1. `chore/scaffold`**: Astro + TS strictest + Tailwind v4 + sitemap + `astro.config` + `src/config.ts` (`SITE_INDEXABLE=false`); página placeholder con `noindex`.
   *Acepta:* `npm run dev` sirve la página; `build` y `check` pasan; `dist/` contiene `noindex`.
 - [ ] **2. `chore/quality`**: ESLint, Prettier, `.prettierignore`, `.editorconfig`, hook; spec §10 (hook = lint + check, build antes del merge) y §9 (nota: tema forzado a oscuro hasta la tarea 13).
   *Acepta:* `lint` pasa; un commit con un error de lint queda bloqueado; LF; spec, CLAUDE.md y plan coinciden.
