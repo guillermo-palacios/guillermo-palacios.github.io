@@ -125,6 +125,7 @@ Cada tarea va en su propia rama, con el contenido del commit confirmado contigo 
   *Acepta:* `portrait.webp` < 300 KB (si no, se informa del peso real y se decide); el build genera AVIF y WebP.
 - [ ] **8. `feat/hero`**.
   *Acepta:* un solo h1; el LCP es el retrato con `fetchpriority`; a 320 px no hay scroll horizontal.
+  *Valorar:* añadir esferas CSS y repartir el mesh; si se hace, remedir el contraste en los dos temas, incluidos los peores puntos del mesh.
 - [ ] **9. `feat/experience`**.
   *Acepta:* texto idéntico a §6.2; chips en monoespaciada.
 - [ ] **10. `feat/projects`**.
@@ -135,6 +136,7 @@ Cada tarea va en su propia rama, con el contenido del commit confirmado contigo 
   *Acepta:* las certificaciones no se renderizan con `[]` y sí con un elemento de prueba; el footer tiene los tres enlaces.
 - [ ] **13. `feat/light-theme`**: pulir el tema claro y activar `prefers-color-scheme`; quitar la nota de §9.
   *Acepta:* contraste ≥ 4,5:1 en los peores puntos del mesh; axe limpio en claro.
+  *Nota:* el alfa de `--mesh-2` en el tema claro (0,07) está limitado por el contraste de `--accent` sobre el pico del mesh (4,73:1).
 - [ ] **14. `chore/a11y-audit`**, en los dos temas.
   *Acepta:* Lighthouse ≥ 95 ×4 en móvil y escritorio; axe limpio; zoom al 200 % y 320 px correctos; navegación solo con teclado.
 - [ ] **15. `feat/seo-assets`**: favicon y OG (según tu diseño) + revisión de la traducción EN.
