@@ -115,7 +115,7 @@ Cada tarea va en su propia rama, con el contenido del commit confirmado contigo 
   *Acepta:* `lint` pasa; un commit con un error de lint queda bloqueado; LF; spec, CLAUDE.md y plan coinciden.
 - [x] **3. `chore/deploy`**: workflow de Pages.
   *Acepta:* un push a `main` publica el placeholder (con `noindex`) en `guillermo-palacios.github.io`.
-- [ ] **4. `feat/design-tokens`**: tokens, mesh, `.glass`, fuentes y fallbacks, tipografía base.
+- [x] **4. `feat/design-tokens`**: tokens, mesh, `.glass`, fuentes y fallbacks, tipografía base.
   *Acepta:* preload de 2 WOFF2 latin; el glass funciona y hay fallback sólido con `reduced-transparency`.
 - [ ] **5. `feat/i18n-content`**: `types.ts`, `es.json` literal de la spec, borrador de `en.json`, rutas, redirección y SeoHead.
   *Acepta:* `/es/` y `/en/` funcionan; `/` redirige; hreflang y `lang` correctos; quitar una clave de `en.json` hace fallar `check`.
