@@ -113,7 +113,7 @@ Cada tarea va en su propia rama, con el contenido del commit confirmado contigo 
   *Acepta:* `npm run dev` sirve la página; `build` y `check` pasan; `dist/` contiene `noindex`.
 - [x] **2. `chore/quality`**: ESLint, Prettier, `.prettierignore`, `.editorconfig`, hook; spec §10 (hook = lint + check, build antes del merge) y §9 (nota: tema forzado a oscuro hasta la tarea 13).
   *Acepta:* `lint` pasa; un commit con un error de lint queda bloqueado; LF; spec, CLAUDE.md y plan coinciden.
-- [ ] **3. `chore/deploy`**: workflow de Pages.
+- [x] **3. `chore/deploy`**: workflow de Pages.
   *Acepta:* un push a `main` publica el placeholder (con `noindex`) en `guillermo-palacios.github.io`.
 - [ ] **4. `feat/design-tokens`**: tokens, mesh, `.glass`, fuentes y fallbacks, tipografía base.
   *Acepta:* preload de 2 WOFF2 latin; el glass funciona y hay fallback sólido con `reduced-transparency`.
