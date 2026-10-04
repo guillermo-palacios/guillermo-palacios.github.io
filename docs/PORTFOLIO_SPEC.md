@@ -173,7 +173,7 @@ Los jades brillantes del mesh son decorativos y nunca llevan texto encima. El te
 | Chips de tecnología | monoespaciada del sistema (`ui-monospace, SFMono-Regular, Menlo, Consolas, monospace`) | 500 |
 
 - Autoalojadas con `@fontsource-variable/sora` y `@fontsource-variable/inter`, solo subset `latin`, WOFF2, `font-display: swap`, `preload` solo de las dos críticas, fallback con `size-adjust` para evitar CLS.
-- Base 1rem (hasta 1.125rem en escritorio). Mínimo absoluto 0.875rem. `line-height` 1.6 en texto y 1.15–1.25 en títulos. Títulos fluidos con `clamp()`. Ancho de línea `max-width: 70ch`. Todo en `rem`.
+- Base 1rem (hasta 1.125rem en escritorio). Mínimo absoluto 0.875rem. `line-height` 1.6 en texto y 1.15–1.25 en títulos. Títulos fluidos con `clamp()`. Ancho de línea `max-width: 44.16em` en el texto (no en títulos), que equivale a 70ch con Inter (70 × 0,63086 em, el avance de su «0»). Se usa `em` y no `ch` porque `ch` se resuelve con la fuente cargada en cada momento: con el fallback mide 41,38 em, y al llegar Inter las líneas se recolocaban y desplazaban el contenido (CLS de 0,007 a 0,021 en escritorio; 0 con `em`). Todo lo demás en `rem`.
 
 ## 8. Accesibilidad (objetivo WCAG 2.2 AA)
 

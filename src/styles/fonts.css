@@ -1,0 +1,62 @@
+/*
+ * Self-hosted variable fonts (spec §7.4). Only the latin WOFF2 of each Fontsource package is
+ * referenced, so no other subset is ever downloaded. The page head preloads these same two files.
+ */
+@font-face {
+  font-family: 'Sora Variable';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 800;
+  src: url('@fontsource-variable/sora/files/sora-latin-wght-normal.woff2')
+    format('woff2-variations');
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+    U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212,
+    U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Inter Variable';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 900;
+  src: url('@fontsource-variable/inter/files/inter-latin-wght-normal.woff2')
+    format('woff2-variations');
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+    U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212,
+    U+2215, U+FEFF, U+FFFD;
+}
+
+/*
+ * Metric-matched fallbacks: local Arial resized so that text takes the same space before and
+ * after the swap, avoiding layout shift.
+ *
+ * - size-adjust = mean advance of the web font / mean advance of Arial, weighted by the character
+ *   frequency of the Spanish copy (spec §6). Advances measured with canvas.measureText in headless
+ *   Edge with these same WOFF2 files: Sora at wght 700 vs Arial Bold, Inter at 400 vs Arial.
+ * - ascent/descent/line-gap-override = hhea ascender, |descender|, lineGap / unitsPerEm /
+ *   size-adjust, because size-adjust also scales the overrides. Both fonts set USE_TYPO_METRICS
+ *   and their OS/2 typo values equal hhea.
+ *   Sora: unitsPerEm 1000, ascender 970, descender -290, lineGap 0.
+ *   Inter: unitsPerEm 2048, ascender 1984, descender -494, lineGap 0.
+ */
+@font-face {
+  font-family: 'Sora Fallback';
+  /* Headings only (600–700); a bold face avoids synthetic bold on Arial. */
+  font-weight: 600 700;
+  src: local('Arial Bold'), local('Arial-BoldMT');
+  size-adjust: 107.19%;
+  ascent-override: 90.5%;
+  descent-override: 27.06%;
+  line-gap-override: 0%;
+}
+
+@font-face {
+  font-family: 'Inter Fallback';
+  src: local('Arial'), local('ArialMT');
+  size-adjust: 106.29%;
+  ascent-override: 91.14%;
+  descent-override: 22.69%;
+  line-gap-override: 0%;
+}

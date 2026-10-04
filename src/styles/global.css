@@ -1,1 +1,201 @@
-@import 'tailwindcss';
+/* Scan src/ only, so words in docs/ do not generate utilities. */
+@import 'tailwindcss' source('..');
+@import './fonts.css';
+
+/* Design tokens (spec §7.2). Dark is the default theme; data-theme="light" switches to light. */
+:root {
+  color-scheme: dark;
+
+  --bg: #060a09;
+  --text: #eaf2ef;
+  --text-muted: #a9bdb6;
+  --accent: #34d399;
+  --btn-bg: #34d399;
+  --btn-text: #04120c;
+  --focus: #34d399;
+  --glass-bg: rgba(10, 16, 14, 0.55);
+  --glass-border: rgba(255, 255, 255, 0.12);
+  --surface-solid: #0e1513;
+
+  /* Glass edge: 1px top highlight and a soft outer shadow. */
+  --glass-highlight: inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
+  --glass-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.5);
+
+  /* Mesh glows (spec §7.3): the two palette jades, #34d399 and #047857, purely decorative. */
+  --mesh-1: rgba(52, 211, 153, 0.2);
+  --mesh-2: rgba(4, 120, 87, 0.45);
+  --mesh-3: rgba(52, 211, 153, 0.1);
+}
+
+:root[data-theme='light'] {
+  color-scheme: light;
+
+  --bg: #f6faf8;
+  --text: #0b1a15;
+  --text-muted: #3d524a;
+  --accent: #047857;
+  --btn-bg: #047857;
+  --btn-text: #ffffff;
+  --focus: #047857;
+  --glass-bg: rgba(255, 255, 255, 0.62);
+  --glass-border: rgba(4, 120, 87, 0.2);
+  --surface-solid: #ffffff;
+
+  --glass-highlight: inset 0 1px 0 0 rgba(255, 255, 255, 0.9);
+  --glass-shadow: 0 8px 24px -4px rgba(11, 26, 21, 0.1);
+
+  /*
+   * Same jades with lower alpha: a fainter mesh on the light background. The --mesh-2 alpha
+   * (0.07) is capped by --accent contrast on the mesh peak: 4.73:1, close to the 4.5:1 minimum.
+   */
+  --mesh-1: rgba(52, 211, 153, 0.14);
+  --mesh-2: rgba(4, 120, 87, 0.07);
+  --mesh-3: rgba(52, 211, 153, 0.08);
+}
+
+@theme inline {
+  /* Only token colors exist as utilities (bg-bg, text-muted, text-accent...). */
+  --color-*: initial;
+  --color-bg: var(--bg);
+  --color-text: var(--text);
+  --color-muted: var(--text-muted);
+  --color-accent: var(--accent);
+  --color-btn-bg: var(--btn-bg);
+  --color-btn-text: var(--btn-text);
+  --color-focus: var(--focus);
+  --color-glass: var(--glass-bg);
+  --color-glass-border: var(--glass-border);
+  --color-surface-solid: var(--surface-solid);
+}
+
+@theme {
+  --font-sans:
+    'Inter Variable', 'Inter Fallback', ui-sans-serif, system-ui, sans-serif;
+  --font-heading:
+    'Sora Variable', 'Sora Fallback', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+  /*
+   * Type scale (spec §7.4): rem only, nothing below 0.875rem. Fluid headings keep max <= 2.5 x min
+   * so that 200 % zoom still doubles the text (WCAG 1.4.4).
+   */
+  --text-*: initial;
+  --text-sm: 0.875rem;
+  --text-sm--line-height: 1.6;
+  --text-base: 1rem;
+  --text-base--line-height: 1.6;
+  --text-lg: 1.125rem;
+  --text-lg--line-height: 1.6;
+  --text-h3: clamp(1.25rem, 1.125rem + 0.625vw, 1.5rem);
+  --text-h3--line-height: 1.25;
+  --text-h2: clamp(1.5rem, 1.25rem + 1.25vw, 2.25rem);
+  --text-h2--line-height: 1.2;
+  --text-h1: clamp(2rem, 1.5rem + 2.5vw, 3.5rem);
+  --text-h1--line-height: 1.15;
+}
+
+@layer base {
+  html {
+    background-color: var(--bg);
+    color: var(--text);
+  }
+
+  body {
+    font-family: var(--font-sans);
+    font-size: var(--text-base);
+    line-height: var(--text-base--line-height);
+  }
+
+  @media (width >= 64rem) {
+    body {
+      font-size: var(--text-lg);
+    }
+  }
+
+  /* Static CSS-only mesh (spec §7.3), painted between the html background and the content. */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background-image:
+      radial-gradient(55% 45% at 12% 8%, var(--mesh-1), transparent 70%),
+      radial-gradient(50% 55% at 92% 38%, var(--mesh-2), transparent 70%),
+      radial-gradient(65% 45% at 35% 100%, var(--mesh-3), transparent 70%);
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-heading);
+    text-wrap: balance;
+  }
+
+  h1 {
+    font-size: var(--text-h1);
+    line-height: var(--text-h1--line-height);
+    font-weight: 700;
+  }
+
+  h2 {
+    font-size: var(--text-h2);
+    line-height: var(--text-h2--line-height);
+    font-weight: 600;
+  }
+
+  h3 {
+    font-size: var(--text-h3);
+    line-height: var(--text-h3--line-height);
+    font-weight: 600;
+  }
+
+  p,
+  li,
+  dd,
+  blockquote,
+  figcaption {
+    /*
+     * 70ch measured with Inter (70 x 0.63086em, the advance of its "0"). Not written as 70ch
+     * because ch follows whichever font is loaded: 41.38em with the fallback, so the swap
+     * re-wrapped lines and shifted the layout.
+     */
+    max-width: 44.16em;
+  }
+
+  a {
+    color: var(--accent);
+    text-decoration-line: underline;
+    text-underline-offset: 0.2em;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  /* Glass surface (spec §7.3): solid by default, translucent only where backdrop-filter works. */
+  .glass {
+    border: 1px solid var(--glass-border);
+    background-color: var(--surface-solid);
+    box-shadow: var(--glass-highlight), var(--glass-shadow);
+  }
+
+  @supports (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px)) {
+    .glass {
+      background-color: var(--glass-bg);
+      -webkit-backdrop-filter: blur(14px) saturate(1.2);
+      backdrop-filter: blur(14px) saturate(1.2);
+    }
+  }
+
+  @media (prefers-reduced-transparency: reduce), (prefers-contrast: more) {
+    .glass {
+      background-color: var(--surface-solid);
+      -webkit-backdrop-filter: none;
+      backdrop-filter: none;
+    }
+  }
+}
