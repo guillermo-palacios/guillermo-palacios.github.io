@@ -121,19 +121,27 @@ Cada tarea va en su propia rama, con el contenido del commit confirmado contigo 
   *Acepta:* `/es/` y `/en/` funcionan; `/` redirige; hreflang y `lang` correctos; quitar una clave de `en.json` hace fallar `check`.
 - [ ] **6. `feat/header`**: BaseLayout, SkipLink, Header, Nav, MobileMenu, LanguageSwitcher, ThemeToggle y anti-parpadeo.
   *Acepta:* todo operable con teclado; sin parpadeo; áreas táctiles ≥ 44 px; JS < 2 KB.
+  *Nota:* ThemeToggle usa una etiqueta fija con `aria-pressed` o dos etiquetas (`ui.theme.toLight` / `ui.theme.toDark`) sin `aria-pressed`, nunca ambas cosas. El JSON mantiene las dos cadenas hasta decidirlo.
 - [ ] **7. `chore/assets`**: script de imágenes, retrato WebP, capturas y CV.
   *Acepta:* `portrait.webp` < 300 KB (si no, se informa del peso real y se decide); el build genera AVIF y WebP.
 - [ ] **8. `feat/hero`**.
   *Acepta:* un solo h1; el LCP es el retrato con `fetchpriority`; a 320 px no hay scroll horizontal.
   *Valorar:* añadir esferas CSS y repartir el mesh; si se hace, remedir el contraste en los dos temas, incluidos los peores puntos del mesh.
+  *Nota:* separar nombre y rol en el h1, con el separador `|` solo visual (`aria-hidden`).
 - [ ] **9. `feat/experience`**.
   *Acepta:* texto idéntico a §6.2; chips en monoespaciada.
+  *Nota:* las etiquetas de campo del JSON (`experience.labels`) vienen de nombres de campo de la spec y no están aprobadas como texto visible; se decide una a una cuáles se muestran y con qué texto.
 - [ ] **10. `feat/projects`**.
   *Acepta:* caso de estudio escaneable; capturas lazy con `alt`; `TODO` visibles; sin botón de demo.
+  *Nota:* las etiquetas de campo del JSON (`projects.labels`) vienen de nombres de campo de la spec y no están aprobadas como texto visible; se decide una a una cuáles se muestran y con qué texto.
+  *Nota:* `ui/Todo` muestra los enlaces con `TODO` como texto resaltado, sin `href`.
 - [ ] **11. `feat/stack-ai`**.
   *Acepta:* dos niveles sin barras; sin hipérboles.
+  *Nota:* las etiquetas de campo del JSON (`stack.columns`) vienen de nombres de campo de la spec y no están aprobadas como texto visible; se decide una a una cuáles se muestran y con qué texto.
+  *Nota:* frase opcional de §6.5 (qué revisas siempre personalmente antes de aceptar cambios): pedírtela y, si la hay, añadirla como `ai.personalReview`, opcional en `types.ts`; si no, no se renderiza.
 - [ ] **12. `feat/education-contact`**.
   *Acepta:* las certificaciones no se renderizan con `[]` y sí con un elemento de prueba; el footer tiene los tres enlaces.
+  *Nota:* las etiquetas de campo del JSON (`education.languages.label`, `education.continuousLearning.label`, `education.certificationsLabel` y `contact.labels`) vienen de nombres de campo de la spec y no están aprobadas como texto visible; se decide una a una cuáles se muestran y con qué texto.
 - [ ] **13. `feat/light-theme`**: pulir el tema claro y activar `prefers-color-scheme`; quitar la nota de §9.
   *Acepta:* contraste ≥ 4,5:1 en los peores puntos del mesh; axe limpio en claro.
   *Nota:* el alfa de `--mesh-2` en el tema claro (0,07) está limitado por el contraste de `--accent` sobre el pico del mesh (4,73:1).
@@ -141,6 +149,7 @@ Cada tarea va en su propia rama, con el contenido del commit confirmado contigo 
   *Acepta:* Lighthouse ≥ 95 ×4 en móvil y escritorio; axe limpio; zoom al 200 % y 320 px correctos; navegación solo con teclado.
 - [ ] **15. `feat/seo-assets`**: favicon y OG (según tu diseño) + revisión de la traducción EN.
   *Acepta:* OG válido en el depurador de LinkedIn; EN revisado por ti.
+  *Nota:* incluye una página 404 bilingüe, porque GitHub Pages sirve `404.html`.
 - [ ] **16. `docs/metrics`**: Lighthouse real del sitio desplegado → JSON del proyecto 2.
   *Acepta:* cifras de una medición real, con el informe guardado.
 - [ ] **17. `chore/pre-launch`**:
@@ -149,7 +158,8 @@ Cada tarea va en su propia rama, con el contenido del commit confirmado contigo 
   - CV en inglés en `public/cv/` y enlazado en `/en/`.
   - URLs reales de MoodNest y del portfolio.
   - Revisión manual de que los PDF de `public/cv/` no exponen teléfono ni dirección.
-  *Acepta:* los cinco puntos verificados y el sitio indexable en producción.
+  - Sitemap configurado con i18n y `dist/` con las URLs de `/es/` y `/en/`.
+  *Acepta:* los seis puntos verificados y el sitio indexable en producción.
 
 ## Verificación global
 `npm run lint && npm run check && npm run build && npm run preview`. Después: axe y Lighthouse (móvil y escritorio, los dos temas) sobre `/es/` y `/en/`, navegación solo con teclado, 320 px, zoom al 200 % y una pasada sin `backdrop-filter`.
