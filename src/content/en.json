@@ -1,0 +1,224 @@
+{
+  "meta": {
+    "title": "Guillermo Palacios | Software Engineer",
+    "description": "Portfolio of Guillermo Palacios García, Software Engineer. Backend, full-stack and AI-assisted development.",
+    "ogImage": "TODO: OG image (task 15)",
+    "favicon": "TODO: favicon (task 15)"
+  },
+  "ui": {
+    "skipLink": "Skip to main content",
+    "homeLink": "Guillermo Palacios, go to top",
+    "downloadCv": "Download CV",
+    "nav": {
+      "label": "Main navigation",
+      "items": [
+        { "id": "experience", "label": "Experience" },
+        { "id": "projects", "label": "Projects" },
+        { "id": "stack", "label": "Stack" },
+        { "id": "ai", "label": "AI" },
+        { "id": "education", "label": "Education" },
+        { "id": "contact", "label": "Contact" }
+      ]
+    },
+    "menu": {
+      "open": "Open menu",
+      "close": "Close menu"
+    },
+    "language": "Español",
+    "theme": {
+      "toLight": "Switch to light theme",
+      "toDark": "Switch to dark theme"
+    },
+    "social": {
+      "github": "GitHub profile",
+      "linkedin": "LinkedIn profile"
+    }
+  },
+  "profile": {
+    "name": "Guillermo Palacios García",
+    "role": "Software Engineer",
+    "location": "Córdoba, Spain",
+    "email": "palaciosgarciaguillermo7@gmail.com",
+    "github": "https://github.com/guillermo-palacios",
+    "linkedin": "https://www.linkedin.com/in/guillermo-palacios-garcia"
+  },
+  "hero": {
+    "title": "Guillermo Palacios | Software Engineer",
+    "subtitle": "Computer Engineer (Software Engineering). Backend, full-stack and AI-assisted development.",
+    "cta": {
+      "cv": "Download CV (PDF)",
+      "contact": "Contact"
+    }
+  },
+  "experience": {
+    "title": "Experience",
+    "labels": {
+      "context": "Context",
+      "highlights": "Highlights"
+    },
+    "items": [
+      {
+        "role": "Full-Stack Web Developer (internship contract)",
+        "company": "Cordoware",
+        "period": "February 2026 – July 2026 (6 months)",
+        "location": "Córdoba, on-site",
+        "context": "team of 3 developers with shared version control.",
+        "description": "Full-stack web development covering the complete software lifecycle.",
+        "highlights": [
+          {
+            "title": "Corporate CRM (full-stack)",
+            "text": "end-to-end implementation (controllers, services and views) of the Quotes, Orders, Delivery Notes and Invoices sales modules, with the business logic and the conversion flows between documents. It was the most complex module of the period. Optimization of Data Annotations to ensure data integrity."
+          },
+          {
+            "title": "Legacy software modernization",
+            "text": "refactoring and upgrading of legacy systems in production towards a component-based architecture and modern visual standards, preserving the original business logic."
+          },
+          {
+            "title": "Backend and e-commerce",
+            "text": "relational database modeling with Entity Framework (Code-First), migration of processes to asynchronous communication (AJAX/JSON/jQuery) and conditional navigation secured with ASP.NET Identity."
+          }
+        ],
+        "chips": [
+          "C#",
+          "ASP.NET Framework",
+          "SQL Server",
+          "JavaScript",
+          "jQuery",
+          "HTML5",
+          "CSS3",
+          "Bootstrap 5"
+        ]
+      }
+    ]
+  },
+  "projects": {
+    "title": "Projects",
+    "labels": {
+      "summary": "Summary",
+      "engineering": "Applied engineering",
+      "stack": "Stack",
+      "decisions": "Key decisions",
+      "metrics": "Lighthouse metrics",
+      "links": "Links"
+    },
+    "moodnest": {
+      "name": "MoodNest",
+      "context": "Bachelor's thesis, grade 9.5",
+      "summary": "web application for daily mood tracking in the face of stress and hyper-digitalization. Contextualized logging of emotions and activities, with a complete data analysis module.",
+      "engineering": "complete lifecycle (requirements, physical/logical/data architecture, implementation, testing and validation of non-functional requirements: performance, security, usability). Agile management with GitHub: Issues, Milestones and Kanban board.",
+      "stack": [
+        "React.js + Tailwind CSS",
+        "REST API in Java with Spring Boot and stateless authentication with JWT",
+        "MongoDB (document-oriented model)",
+        "JUnit, Mockito and Postman",
+        "Docker"
+      ],
+      "links": [
+        { "label": "GitHub repository", "href": "TODO: URL" },
+        { "label": "documentation", "href": "TODO: URL" }
+      ]
+    },
+    "portfolio": {
+      "name": "This portfolio",
+      "summary": "bilingual static site built with Astro, TypeScript and Tailwind, developed with an AI-assisted workflow (Claude Code).",
+      "decisions": [
+        "performance (minimal JS, self-hosted fonts, AVIF/WebP images)",
+        "WCAG 2.2 AA accessibility",
+        "light/dark theme with CSS tokens",
+        "glassmorphism with fallbacks"
+      ],
+      "metrics": "TODO — to be filled in with real measurements once the site is deployed.",
+      "links": [
+        { "label": "repository", "href": "TODO: URL" },
+        { "label": "live site", "href": "TODO: URL" }
+      ]
+    }
+  },
+  "stack": {
+    "title": "Tech stack",
+    "columns": {
+      "area": "Area",
+      "primary": "Primary",
+      "secondary": "Secondary"
+    },
+    "rows": [
+      {
+        "area": "Languages",
+        "primary": ["Java", "C#", "JavaScript", "SQL", "Python"],
+        "secondary": ["C", "C++"]
+      },
+      {
+        "area": "Backend",
+        "primary": [
+          "Spring Boot",
+          "ASP.NET (MVC)",
+          "Entity Framework",
+          "REST APIs",
+          "authentication (JWT, ASP.NET Identity)"
+        ],
+        "secondary": []
+      },
+      {
+        "area": "Frontend",
+        "primary": ["React", "Tailwind CSS", "HTML5/CSS3", "responsive design"],
+        "secondary": ["Bootstrap 5"]
+      },
+      {
+        "area": "Databases",
+        "primary": ["SQL Server", "MongoDB"],
+        "secondary": []
+      },
+      {
+        "area": "Quality and DevOps",
+        "primary": ["Git/GitHub", "Docker", "JUnit", "Mockito"],
+        "secondary": ["Postman"]
+      }
+    ]
+  },
+  "ai": {
+    "title": "How I work with AI",
+    "items": [
+      "Development planning and breaking the work down into tasks.",
+      "Assisted implementation with Claude Code.",
+      "Test generation, code review and refactoring.",
+      "Coordination of several subagents working in parallel."
+    ]
+  },
+  "education": {
+    "title": "Education and languages",
+    "degree": {
+      "title": "Bachelor's Degree in Computer Engineering (Specialization in Software Engineering)",
+      "institution": "University of Córdoba (UCO)",
+      "note": "Bachelor's thesis (MoodNest): 9.5."
+    },
+    "languages": {
+      "label": "Languages",
+      "items": ["native Spanish", "certified B1 English"]
+    },
+    "continuousLearning": {
+      "label": "Continuous learning",
+      "text": "self-directed learning focused on AI and Machine Learning."
+    },
+    "certificationsLabel": "Certifications",
+    "certifications": []
+  },
+  "contact": {
+    "title": "Contact and availability",
+    "labels": {
+      "status": "Status",
+      "modality": "Work arrangement",
+      "links": "Links"
+    },
+    "status": "available to join as a Junior Software Developer / Engineer or for projects.",
+    "modality": [
+      "on-site in Córdoba city",
+      "hybrid in Córdoba and surrounding areas",
+      "remote anywhere in Spain"
+    ],
+    "links": {
+      "email": "email",
+      "linkedin": "LinkedIn",
+      "github": "GitHub"
+    }
+  }
+}

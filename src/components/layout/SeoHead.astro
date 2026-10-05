@@ -1,0 +1,39 @@
+---
+import { SITE_INDEXABLE } from '../../config';
+import { LOCALES, OG_LOCALES, type Locale } from '../../i18n/config';
+import {
+  getAbsoluteUrl,
+  getAlternates,
+  getContent,
+  getLocalePath,
+} from '../../i18n/utils';
+
+interface Props {
+  lang: Locale;
+}
+
+const { lang } = Astro.props;
+const { meta } = getContent(lang);
+const canonical = getAbsoluteUrl(getLocalePath(lang));
+const alternates = getAlternates();
+const otherOgLocales = LOCALES.filter((l) => l !== lang).map(
+  (l) => OG_LOCALES[l],
+);
+// og:image and favicon are added in task 15, once the files exist.
+---
+
+<title>{meta.title}</title>
+<meta name="description" content={meta.description} />
+{!SITE_INDEXABLE && <meta name="robots" content="noindex" />}
+<link rel="canonical" href={canonical} />
+{alternates.map(({ hreflang, href }) => (
+  <link rel="alternate" hreflang={hreflang} href={href} />
+))}
+<meta property="og:type" content="website" />
+<meta property="og:title" content={meta.title} />
+<meta property="og:description" content={meta.description} />
+<meta property="og:url" content={canonical} />
+<meta property="og:locale" content={OG_LOCALES[lang]} />
+{otherOgLocales.map((ogLocale) => (
+  <meta property="og:locale:alternate" content={ogLocale} />
+))}

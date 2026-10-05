@@ -1,0 +1,224 @@
+{
+  "meta": {
+    "title": "Guillermo Palacios | Ingeniero de Software",
+    "description": "Portfolio de Guillermo Palacios García, Ingeniero de Software. Backend, full-stack y desarrollo asistido por IA.",
+    "ogImage": "TODO: imagen OG (tarea 15)",
+    "favicon": "TODO: favicon (tarea 15)"
+  },
+  "ui": {
+    "skipLink": "Saltar al contenido principal",
+    "homeLink": "Guillermo Palacios, ir al inicio",
+    "downloadCv": "Descargar CV",
+    "nav": {
+      "label": "Navegación principal",
+      "items": [
+        { "id": "experience", "label": "Experiencia" },
+        { "id": "projects", "label": "Proyectos" },
+        { "id": "stack", "label": "Stack" },
+        { "id": "ai", "label": "IA" },
+        { "id": "education", "label": "Formación" },
+        { "id": "contact", "label": "Contacto" }
+      ]
+    },
+    "menu": {
+      "open": "Abrir menú",
+      "close": "Cerrar menú"
+    },
+    "language": "English",
+    "theme": {
+      "toLight": "Activar tema claro",
+      "toDark": "Activar tema oscuro"
+    },
+    "social": {
+      "github": "Perfil de GitHub",
+      "linkedin": "Perfil de LinkedIn"
+    }
+  },
+  "profile": {
+    "name": "Guillermo Palacios García",
+    "role": "Ingeniero de Software",
+    "location": "Córdoba, España",
+    "email": "palaciosgarciaguillermo7@gmail.com",
+    "github": "https://github.com/guillermo-palacios",
+    "linkedin": "https://www.linkedin.com/in/guillermo-palacios-garcia"
+  },
+  "hero": {
+    "title": "Guillermo Palacios | Ingeniero de Software",
+    "subtitle": "Ingeniero Informático (Ingeniería del Software). Backend, full-stack y desarrollo asistido por IA.",
+    "cta": {
+      "cv": "Descargar CV (PDF)",
+      "contact": "Contactar"
+    }
+  },
+  "experience": {
+    "title": "Experiencia",
+    "labels": {
+      "context": "Contexto",
+      "highlights": "Hitos"
+    },
+    "items": [
+      {
+        "role": "Desarrollador Web Full-Stack (contrato de prácticas)",
+        "company": "Cordoware",
+        "period": "febrero 2026 – julio 2026 (6 meses)",
+        "location": "Córdoba, presencial",
+        "context": "equipo de 3 desarrolladores con control de versiones compartido.",
+        "description": "Desarrollo web full-stack cubriendo el ciclo de vida completo del software.",
+        "highlights": [
+          {
+            "title": "CRM corporativo (full-stack)",
+            "text": "implementación end-to-end (controladores, servicios y vistas) de los módulos comerciales de Presupuestos, Pedidos, Albaranes y Facturas, con la lógica de negocio y los flujos de conversión entre documentos. Fue el módulo más complejo del periodo. Optimización de Data Annotations para garantizar la integridad de datos."
+          },
+          {
+            "title": "Modernización de software legacy",
+            "text": "refactorización y actualización de sistemas heredados en producción hacia una arquitectura de componentes y estándares visuales modernos, preservando la lógica de negocio original."
+          },
+          {
+            "title": "Backend y e-commerce",
+            "text": "modelado de base de datos relacional con Entity Framework (Code-First), paso de procesos a comunicación asíncrona (AJAX/JSON/jQuery) y navegación condicional con seguridad mediante ASP.NET Identity."
+          }
+        ],
+        "chips": [
+          "C#",
+          "ASP.NET Framework",
+          "SQL Server",
+          "JavaScript",
+          "jQuery",
+          "HTML5",
+          "CSS3",
+          "Bootstrap 5"
+        ]
+      }
+    ]
+  },
+  "projects": {
+    "title": "Proyectos",
+    "labels": {
+      "summary": "Resumen",
+      "engineering": "Ingeniería aplicada",
+      "stack": "Stack",
+      "decisions": "Decisiones a destacar",
+      "metrics": "Métricas Lighthouse",
+      "links": "Enlaces"
+    },
+    "moodnest": {
+      "name": "MoodNest",
+      "context": "TFG, calificación 9,5",
+      "summary": "aplicación web de seguimiento diario del estado de ánimo frente al estrés y la hiperdigitalización. Registro contextualizado de emociones y actividades, con un módulo completo de análisis de datos.",
+      "engineering": "ciclo de vida completo (requisitos, arquitectura física/lógica/de datos, implementación, testing y validación de requisitos no funcionales: rendimiento, seguridad, usabilidad). Gestión ágil con GitHub: Issues, Milestones y tablero Kanban.",
+      "stack": [
+        "React.js + Tailwind CSS",
+        "API REST en Java con Spring Boot y autenticación stateless con JWT",
+        "MongoDB (modelo orientado a documentos)",
+        "JUnit, Mockito y Postman",
+        "Docker"
+      ],
+      "links": [
+        { "label": "repositorio de GitHub", "href": "TODO: URL" },
+        { "label": "documentación", "href": "TODO: URL" }
+      ]
+    },
+    "portfolio": {
+      "name": "Este portfolio",
+      "summary": "sitio estático bilingüe construido con Astro, TypeScript y Tailwind, desarrollado con flujo asistido por IA (Claude Code).",
+      "decisions": [
+        "rendimiento (JS mínimo, fuentes autoalojadas, imágenes AVIF/WebP)",
+        "accesibilidad WCAG 2.2 AA",
+        "tema claro/oscuro con tokens CSS",
+        "glassmorphism con fallbacks"
+      ],
+      "metrics": "TODO — se rellenan con mediciones reales cuando el sitio esté desplegado.",
+      "links": [
+        { "label": "repositorio", "href": "TODO: URL" },
+        { "label": "sitio en vivo", "href": "TODO: URL" }
+      ]
+    }
+  },
+  "stack": {
+    "title": "Stack tecnológico",
+    "columns": {
+      "area": "Área",
+      "primary": "Principal",
+      "secondary": "Secundario"
+    },
+    "rows": [
+      {
+        "area": "Lenguajes",
+        "primary": ["Java", "C#", "JavaScript", "SQL", "Python"],
+        "secondary": ["C", "C++"]
+      },
+      {
+        "area": "Backend",
+        "primary": [
+          "Spring Boot",
+          "ASP.NET (MVC)",
+          "Entity Framework",
+          "APIs REST",
+          "autenticación (JWT, ASP.NET Identity)"
+        ],
+        "secondary": []
+      },
+      {
+        "area": "Frontend",
+        "primary": ["React", "Tailwind CSS", "HTML5/CSS3", "diseño responsive"],
+        "secondary": ["Bootstrap 5"]
+      },
+      {
+        "area": "Bases de datos",
+        "primary": ["SQL Server", "MongoDB"],
+        "secondary": []
+      },
+      {
+        "area": "Calidad y DevOps",
+        "primary": ["Git/GitHub", "Docker", "JUnit", "Mockito"],
+        "secondary": ["Postman"]
+      }
+    ]
+  },
+  "ai": {
+    "title": "Cómo trabajo con IA",
+    "items": [
+      "Planificación del desarrollo y separación del trabajo en tareas.",
+      "Implementación asistida con Claude Code.",
+      "Generación de tests, revisión de código y refactorizaciones.",
+      "Coordinación de varios subagentes trabajando en paralelo."
+    ]
+  },
+  "education": {
+    "title": "Formación e idiomas",
+    "degree": {
+      "title": "Grado en Ingeniería Informática (Mención en Ingeniería del Software)",
+      "institution": "Universidad de Córdoba (UCO)",
+      "note": "TFG (MoodNest): 9,5."
+    },
+    "languages": {
+      "label": "Idiomas",
+      "items": ["español nativo", "inglés B1 acreditado"]
+    },
+    "continuousLearning": {
+      "label": "Formación continua",
+      "text": "aprendizaje autodidacta orientado a IA y Machine Learning."
+    },
+    "certificationsLabel": "Certificaciones",
+    "certifications": []
+  },
+  "contact": {
+    "title": "Contacto y disponibilidad",
+    "labels": {
+      "status": "Estado",
+      "modality": "Modalidad",
+      "links": "Enlaces"
+    },
+    "status": "disponible para incorporación como Desarrollador / Ingeniero de Software Junior o proyectos.",
+    "modality": [
+      "presencial en Córdoba capital",
+      "híbrido en Córdoba y alrededores",
+      "remoto en toda España"
+    ],
+    "links": {
+      "email": "email",
+      "linkedin": "LinkedIn",
+      "github": "GitHub"
+    }
+  }
+}
