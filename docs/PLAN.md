@@ -117,7 +117,7 @@ Cada tarea va en su propia rama, con el contenido del commit confirmado contigo 
   *Acepta:* un push a `main` publica el placeholder (con `noindex`) en `guillermo-palacios.github.io`.
 - [x] **4. `feat/design-tokens`**: tokens, mesh, `.glass`, fuentes y fallbacks, tipografía base.
   *Acepta:* preload de 2 WOFF2 latin; el glass funciona y hay fallback sólido con `reduced-transparency`.
-- [ ] **5. `feat/i18n-content`**: `types.ts`, `es.json` literal de la spec, borrador de `en.json`, rutas, redirección y SeoHead.
+- [x] **5. `feat/i18n-content`**: `types.ts`, `es.json` literal de la spec, borrador de `en.json`, rutas, redirección y SeoHead.
   *Acepta:* `/es/` y `/en/` funcionan; `/` redirige; hreflang y `lang` correctos; quitar una clave de `en.json` hace fallar `check`.
 - [ ] **6. `feat/header`**: BaseLayout, SkipLink, Header, Nav, MobileMenu, LanguageSwitcher, ThemeToggle y anti-parpadeo.
   *Acepta:* todo operable con teclado; sin parpadeo; áreas táctiles ≥ 44 px; JS < 2 KB.
