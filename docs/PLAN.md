@@ -63,9 +63,9 @@ src/
 | SkipLink | Saltar al contenido | — |
 | Header | Cabecera fija glass con logo, Nav, idioma, tema, CV y MobileMenu | — |
 | Nav | Anclas (lista compartida con MobileMenu) | — |
-| MobileMenu | Popover API (`popovertarget`): Esc, cierre al pulsar fuera y `aria-expanded` nativos; un script mínimo lo cierra al pulsar un ancla | ~0,3 KB |
+| MobileMenu | Popover API (`popovertarget`): botón con etiqueta fija (`ui.menu.label`) y el estado de `aria-expanded` nativo, sin cambiar el nombre; Esc y cierre al pulsar fuera nativos; un script mínimo lo cierra al pulsar un ancla y cuando el foco sale a la página | ~0,3 KB |
 | LanguageSwitcher | Enlace al otro idioma | — |
-| ThemeToggle | `<button aria-pressed>` sol/luna; guarda la elección | ~0,5 KB |
+| ThemeToggle | `<button>` sol/luna con dos etiquetas (`ui.theme.toLight` / `ui.theme.toDark`) que cambian con el estado, sin `aria-pressed`; guarda la elección | ~0,5 KB |
 | Hero | h1, subtítulo, retrato `<Picture fetchpriority=high>`, CTAs, slot de decoración | — |
 | Experience | Cordoware: hitos y chips | — |
 | Projects | Caso de estudio de MoodNest (capturas lazy) y portfolio con `TODO` | — |
@@ -121,9 +121,10 @@ Cada tarea va en su propia rama, con el contenido del commit confirmado contigo 
   *Acepta:* `/es/` y `/en/` funcionan; `/` redirige; hreflang y `lang` correctos; quitar una clave de `en.json` hace fallar `check`.
 - [ ] **6. `feat/header`**: BaseLayout, SkipLink, Header, Nav, MobileMenu, LanguageSwitcher, ThemeToggle y anti-parpadeo.
   *Acepta:* todo operable con teclado; sin parpadeo; áreas táctiles ≥ 44 px; JS < 2 KB.
-  *Nota:* ThemeToggle usa una etiqueta fija con `aria-pressed` o dos etiquetas (`ui.theme.toLight` / `ui.theme.toDark`) sin `aria-pressed`, nunca ambas cosas. El JSON mantiene las dos cadenas hasta decidirlo.
+  *Nota:* ThemeToggle usa dos etiquetas (`ui.theme.toLight` / `ui.theme.toDark`) que cambian con el estado, sin `aria-pressed` (nunca ambas cosas).
 - [ ] **7. `chore/assets`**: script de imágenes, retrato WebP, capturas y CV.
   *Acepta:* `portrait.webp` < 300 KB (si no, se informa del peso real y se decide); el build genera AVIF y WebP.
+  *Nota:* aquí se añade a la cabecera el botón «Descargar CV» (`ui.downloadCv`, spec §5), que la tarea 6 dejó fuera. A 1024 px quedan unos 157 px libres en la barra (ES): comprobar que cabe o mover la Nav de escritorio a un breakpoint mayor.
 - [ ] **8. `feat/hero`**.
   *Acepta:* un solo h1; el LCP es el retrato con `fetchpriority`; a 320 px no hay scroll horizontal.
   *Valorar:* añadir esferas CSS y repartir el mesh; si se hace, remedir el contraste en los dos temas, incluidos los peores puntos del mesh.
@@ -147,6 +148,7 @@ Cada tarea va en su propia rama, con el contenido del commit confirmado contigo 
   *Nota:* el alfa de `--mesh-2` en el tema claro (0,07) está limitado por el contraste de `--accent` sobre el pico del mesh (4,73:1).
 - [ ] **14. `chore/a11y-audit`**, en los dos temas.
   *Acepta:* Lighthouse ≥ 95 ×4 en móvil y escritorio; axe limpio; zoom al 200 % y 320 px correctos; navegación solo con teclado.
+  *Nota:* comprobar la compatibilidad con Safari 16 y la cuota real de ese navegador. La Popover API llega en Safari 17: sin ella, el panel del menú móvil no se oculta. Con esos datos se decide si hace falta un fallback (la tarea 6 no añadió ninguno).
 - [ ] **15. `feat/seo-assets`**: favicon y OG (según tu diseño) + revisión de la traducción EN.
   *Acepta:* OG válido en el depurador de LinkedIn; EN revisado por ti.
   *Nota:* incluye una página 404 bilingüe, porque GitHub Pages sirve `404.html`.
