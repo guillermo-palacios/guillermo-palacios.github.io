@@ -1,12 +1,9 @@
 ---
 // Provisional page (task 5): only the hero title and subtitle. Sections arrive in tasks 8–12.
 import type { GetStaticPaths, InferGetStaticPropsType } from 'astro';
-import interWoff2 from '@fontsource-variable/inter/files/inter-latin-wght-normal.woff2?url';
-import soraWoff2 from '@fontsource-variable/sora/files/sora-latin-wght-normal.woff2?url';
-import SeoHead from '../../components/layout/SeoHead.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
 import { LOCALES } from '../../i18n/config';
 import { getContent } from '../../i18n/utils';
-import '../../styles/global.css';
 
 export const getStaticPaths = (() =>
   LOCALES.map((lang) => ({
@@ -20,32 +17,9 @@ const { lang } = Astro.props;
 const { hero } = getContent(lang);
 ---
 
-<!doctype html>
-<html lang={lang}>
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <SeoHead lang={lang} />
-    <!-- Moves to BaseLayout in task 6. -->
-    <link
-      rel="preload"
-      href={soraWoff2}
-      as="font"
-      type="font/woff2"
-      crossorigin
-    />
-    <link
-      rel="preload"
-      href={interWoff2}
-      as="font"
-      type="font/woff2"
-      crossorigin
-    />
-  </head>
-  <body>
-    <main class="mx-auto max-w-5xl px-4 py-16 sm:px-6 lg:py-24">
-      <h1>{hero.title}</h1>
-      <p class="mt-6">{hero.subtitle}</p>
-    </main>
-  </body>
-</html>
+<BaseLayout lang={lang}>
+  <div class="mx-auto max-w-5xl px-4 py-16 sm:px-6 lg:py-24">
+    <h1>{hero.title}</h1>
+    <p class="mt-6">{hero.subtitle}</p>
+  </div>
+</BaseLayout>

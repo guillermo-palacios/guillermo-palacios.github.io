@@ -1,0 +1,61 @@
+---
+import interWoff2 from '@fontsource-variable/inter/files/inter-latin-wght-normal.woff2?url';
+import soraWoff2 from '@fontsource-variable/sora/files/sora-latin-wght-normal.woff2?url';
+import Header from '../components/layout/Header.astro';
+import SeoHead from '../components/layout/SeoHead.astro';
+import SkipLink from '../components/layout/SkipLink.astro';
+import type { Locale } from '../i18n/config';
+import '../styles/global.css';
+
+interface Props {
+  lang: Locale;
+}
+
+const { lang } = Astro.props;
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    {/*
+     * Anti-flicker (< 300 B, first in <head>): sets data-theme on <html> before the first paint.
+     * Until task 13 it forces dark unless the visitor saved a manual choice; matchMedia
+     * (prefers-color-scheme) is not read yet. data-theme also reveals ThemeToggle, so the
+     * toggle stays hidden without JS.
+     */}
+    <script is:inline>
+      try {
+        document.documentElement.dataset.theme =
+          localStorage.theme === 'light' ? 'light' : 'dark';
+      } catch {
+        document.documentElement.dataset.theme = 'dark';
+      }
+    </script>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <SeoHead lang={lang} />
+    <link
+      rel="preload"
+      href={soraWoff2}
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href={interWoff2}
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+  </head>
+  <body>
+    <SkipLink lang={lang} />
+    <Header lang={lang} />
+    <main id="main" class="pt-(--header-offset)">
+      <slot />
+    </main>
+    {/* Footer (contact section) arrives in task 12. */}
+    <slot name="footer" />
+  </body>
+</html>

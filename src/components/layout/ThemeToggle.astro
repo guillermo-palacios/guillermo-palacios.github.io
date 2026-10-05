@@ -1,0 +1,31 @@
+---
+// Two labels that follow the state (ui.theme.toLight / toDark), no aria-pressed (PLAN task 6).
+// Hidden until the anti-flicker script in BaseLayout sets data-theme on <html>: without JS it
+// never shows, and with JS it is already there on the first paint, so the header does not shift.
+// Label and icon switch through CSS on data-theme; the script only flips and stores the theme.
+import type { Locale } from '../../i18n/config';
+import { getContent } from '../../i18n/utils';
+import Icon from '../ui/Icon.astro';
+
+interface Props {
+  lang: Locale;
+}
+
+const { lang } = Astro.props;
+const { ui } = getContent(lang);
+---
+
+<button
+  type="button"
+  data-theme-toggle
+  class="hidden size-11 shrink-0 items-center justify-center rounded-lg text-text in-data-theme:inline-flex hover:text-accent"
+>
+  <span class="sr-only in-data-[theme=light]:hidden">{ui.theme.toLight}</span>
+  <span class="sr-only hidden in-data-[theme=light]:inline">
+    {ui.theme.toDark}
+  </span>
+  <Icon name="sun" class="in-data-[theme=light]:hidden" />
+  <Icon name="moon" class="hidden in-data-[theme=light]:block" />
+</button>
+
+<script src="../../scripts/theme-toggle.ts"></script>

@@ -7,6 +7,7 @@
   },
   "ui": {
     "skipLink": "Skip to main content",
+    "brand": "Guillermo Palacios",
     "homeLink": "Guillermo Palacios, go to top",
     "downloadCv": "Download CV",
     "nav": {
@@ -21,8 +22,7 @@
       ]
     },
     "menu": {
-      "open": "Open menu",
-      "close": "Close menu"
+      "label": "Menu"
     },
     "language": "Español",
     "theme": {

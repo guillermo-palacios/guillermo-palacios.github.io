@@ -1,0 +1,47 @@
+---
+// Inline SVG icons drawn on a 24×24 grid with a 2px stroke. Brand icons arrive in tasks 8 and 12.
+const icons = {
+  sun: [
+    'M8.5 12a3.5 3.5 0 1 0 7 0a3.5 3.5 0 1 0-7 0',
+    'M12 3v2.5',
+    'M12 18.5V21',
+    'M3 12h2.5',
+    'M18.5 12H21',
+    'M5.64 5.64l1.77 1.77',
+    'M16.59 16.59l1.77 1.77',
+    'M5.64 18.36l1.77-1.77',
+    'M16.59 7.41l1.77-1.77',
+  ],
+  moon: ['M12 3a9 9 0 1 0 9 9a7 7 0 0 1-9-9z'],
+  menu: ['M4 6h16', 'M4 12h16', 'M4 18h16'],
+  close: ['M6 6l12 12', 'M18 6L6 18'],
+} satisfies Record<string, string[]>;
+
+export type IconName = keyof typeof icons;
+
+interface Props {
+  name: IconName;
+  class?: string;
+}
+
+const { name, class: className } = Astro.props;
+---
+
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 24 24"
+  width="24"
+  height="24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  aria-hidden="true"
+  focusable="false"
+  class={className}
+>
+  {icons[name].map((d) => (
+    <path d={d} />
+  ))}
+</svg>

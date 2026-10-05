@@ -1,0 +1,33 @@
+---
+// Section anchors from ui.nav.items, shared by the desktop header and MobileMenu.
+import type { Locale } from '../../i18n/config';
+import { getContent } from '../../i18n/utils';
+
+interface Props {
+  lang: Locale;
+  orientation?: 'horizontal' | 'vertical';
+  class?: string;
+}
+
+const { lang, orientation = 'horizontal', class: className } = Astro.props;
+const { ui } = getContent(lang);
+const vertical = orientation === 'vertical';
+---
+
+<nav aria-label={ui.nav.label} class={className}>
+  <ul class:list={['flex', vertical ? 'flex-col' : 'items-center']}>
+    {ui.nav.items.map(({ id, label }) => (
+      <li>
+        <a
+          href={`#${id}`}
+          class:list={[
+            'inline-flex min-h-11 min-w-11 items-center rounded-lg px-3 font-medium text-text no-underline hover:text-accent',
+            vertical ? 'w-full' : 'justify-center',
+          ]}
+        >
+          {label}
+        </a>
+      </li>
+    ))}
+  </ul>
+</nav>

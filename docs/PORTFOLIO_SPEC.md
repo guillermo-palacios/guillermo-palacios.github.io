@@ -46,7 +46,7 @@ Sitio web personal que funcione como **prueba de solvencia en ingeniería de sof
 
 ## 5. Estructura de la página (orden)
 
-1. **Cabecera fija:** nombre/logo, navegación por anclas, selector de idioma, toggle de tema, botón "Descargar CV".
+1. **Cabecera fija** (salvo en ventanas de poca altura, `max-height: 30rem`, donde se queda al principio de la página y se desplaza con ella para no tapar contenido con zoom o en horizontal)**:** nombre/logo, navegación por anclas, selector de idioma, toggle de tema, botón "Descargar CV".
 2. **Hero**
 3. **Experiencia**
 4. **Proyectos**

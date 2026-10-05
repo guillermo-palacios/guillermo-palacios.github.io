@@ -1,0 +1,22 @@
+---
+// Plain link to the other locale's page: works without JS.
+import { DEFAULT_LOCALE, LOCALES, type Locale } from '../../i18n/config';
+import { getContent, getLocalePath } from '../../i18n/utils';
+
+interface Props {
+  lang: Locale;
+}
+
+const { lang } = Astro.props;
+const { ui } = getContent(lang);
+const target = LOCALES.find((locale) => locale !== lang) ?? DEFAULT_LOCALE;
+---
+
+<a
+  href={getLocalePath(target)}
+  hreflang={target}
+  lang={target}
+  class="inline-flex min-h-11 min-w-11 shrink-0 items-center justify-center rounded-lg px-3 font-medium text-text no-underline hover:text-accent"
+>
+  {ui.language}
+</a>

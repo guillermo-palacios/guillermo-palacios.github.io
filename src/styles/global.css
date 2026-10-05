@@ -53,6 +53,35 @@
   --mesh-3: rgba(52, 211, 153, 0.08);
 }
 
+/* Floating fixed header: gap to the viewport edges and bar height (44px targets + padding). */
+:root {
+  --header-gap: 0.5rem;
+  --header-h: 3.5rem;
+  --header-offset: calc(var(--header-gap) + var(--header-h));
+  --header-position: fixed;
+  /* Room kept above anchor targets and focused elements: the bar, its gap and some air. */
+  --scroll-offset: calc(var(--header-offset) + 1rem);
+}
+
+@media (width >= 48rem) {
+  :root {
+    --header-gap: 0.75rem;
+  }
+}
+
+/*
+ * Short viewports (landscape phones, 200 % zoom on a laptop): a fixed bar would cover about
+ * 20 % of the height, so it stays at the top of the page and scrolls away. Absolute keeps the
+ * same place and size, so main keeps its padding-top (--header-offset) to clear the bar; anchors
+ * only need some air because nothing is fixed on top of them.
+ */
+@media (max-height: 30rem) {
+  :root {
+    --header-position: absolute;
+    --scroll-offset: 1rem;
+  }
+}
+
 @theme inline {
   /* Only token colors exist as utilities (bg-bg, text-muted, text-accent...). */
   --color-*: initial;
@@ -98,6 +127,8 @@
   html {
     background-color: var(--bg);
     color: var(--text);
+    /* Anchor jumps and focus scrolling land below the fixed header. */
+    scroll-padding-top: var(--scroll-offset);
   }
 
   body {

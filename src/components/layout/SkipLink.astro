@@ -1,0 +1,19 @@
+---
+// Solid surface, not glass: it shows on top of the glass header.
+import type { Locale } from '../../i18n/config';
+import { getContent } from '../../i18n/utils';
+
+interface Props {
+  lang: Locale;
+}
+
+const { lang } = Astro.props;
+const { ui } = getContent(lang);
+---
+
+<a
+  href="#main"
+  class="fixed top-(--header-gap) left-(--header-gap) z-50 inline-flex min-h-11 items-center rounded-xl border border-glass-border bg-surface-solid px-4 font-medium text-text not-focus:sr-only"
+>
+  {ui.skipLink}
+</a>

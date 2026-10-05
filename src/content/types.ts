@@ -50,6 +50,8 @@ export interface SiteContent {
   };
   ui: {
     skipLink: string;
+    // Visible logo text; homeLink (its accessible name) must start with it (WCAG 2.5.3).
+    brand: string;
     homeLink: string;
     downloadCv: string;
     nav: {
@@ -57,8 +59,8 @@ export interface SiteContent {
       items: NavItem[];
     };
     menu: {
-      open: string;
-      close: string;
+      // Fixed name of the menu button; the open/closed state comes from the native aria-expanded.
+      label: string;
     };
     language: string;
     theme: {

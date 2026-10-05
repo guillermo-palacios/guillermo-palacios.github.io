@@ -1,0 +1,31 @@
+---
+// Floating glass bar: fixed, or absolute on short viewports (--header-position in global.css).
+// The "Download CV" button joins it in task 7.
+import type { Locale } from '../../i18n/config';
+import { getContent } from '../../i18n/utils';
+import LanguageSwitcher from './LanguageSwitcher.astro';
+import MobileMenu from './MobileMenu.astro';
+import Nav from './Nav.astro';
+import ThemeToggle from './ThemeToggle.astro';
+
+interface Props {
+  lang: Locale;
+}
+
+const { lang } = Astro.props;
+const { ui } = getContent(lang);
+---
+
+<header class="glass [position:var(--header-position)] inset-x-(--header-gap) top-(--header-gap) z-40 mx-auto flex h-(--header-h) max-w-5xl items-center gap-1 rounded-2xl px-1 text-base sm:px-2">
+  <a
+    href="#top"
+    aria-label={ui.homeLink}
+    class="me-auto inline-flex min-h-11 items-center rounded-lg px-2 font-heading leading-tight font-semibold text-text no-underline hover:text-accent"
+  >
+    {ui.brand}
+  </a>
+  <Nav lang={lang} class="hidden lg:block" />
+  <LanguageSwitcher lang={lang} />
+  <ThemeToggle lang={lang} />
+  <MobileMenu lang={lang} />
+</header>
