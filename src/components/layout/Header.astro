@@ -1,8 +1,10 @@
 ---
 // Floating glass bar: fixed, or absolute on short viewports (--header-position in global.css).
-// The "Download CV" button joins it in task 7.
+// Order from spec §5. Below lg the nav links and the CV button live in the MobileMenu panel.
+// From lg up, gaps and paddings are tight enough to fit at 1024 px with WCAG 1.4.12 text spacing.
 import type { Locale } from '../../i18n/config';
 import { getContent } from '../../i18n/utils';
+import CvLink from './CvLink.astro';
 import LanguageSwitcher from './LanguageSwitcher.astro';
 import MobileMenu from './MobileMenu.astro';
 import Nav from './Nav.astro';
@@ -16,7 +18,7 @@ const { lang } = Astro.props;
 const { ui } = getContent(lang);
 ---
 
-<header class="glass [position:var(--header-position)] inset-x-(--header-gap) top-(--header-gap) z-40 mx-auto flex h-(--header-h) max-w-5xl items-center gap-1 rounded-2xl px-1 text-base sm:px-2">
+<header class="glass [position:var(--header-position)] inset-x-(--header-gap) top-(--header-gap) z-40 mx-auto flex h-(--header-h) max-w-5xl items-center gap-1 rounded-2xl lg:gap-0.5 px-1 text-base sm:px-2">
   <a
     href="#top"
     aria-label={ui.homeLink}
@@ -27,5 +29,6 @@ const { ui } = getContent(lang);
   <Nav lang={lang} class="hidden lg:block" />
   <LanguageSwitcher lang={lang} />
   <ThemeToggle lang={lang} />
+  <CvLink lang={lang} class="hidden lg:inline-flex" />
   <MobileMenu lang={lang} />
 </header>

@@ -2,10 +2,12 @@
 // Popover API: Esc, closing on an outside click, aria-expanded and focus return are native.
 // Fixed label (ui.menu.label) plus the native expanded state, as in the APG disclosure pattern;
 // only the icon switches, through CSS while the popover is open.
-// The panel sits in the top layer, right-aligned under the header bar.
+// The panel sits in the top layer, right-aligned under the header bar. It also holds the CV
+// button, which only fits in the bar from lg up.
 import type { Locale } from '../../i18n/config';
 import { getContent } from '../../i18n/utils';
 import Icon from '../ui/Icon.astro';
+import CvLink from './CvLink.astro';
 import Nav from './Nav.astro';
 
 interface Props {
@@ -32,6 +34,7 @@ const { ui } = getContent(lang);
     class="glass top-[calc(var(--header-offset)+0.5rem)] right-(--header-gap) left-(--header-gap) ms-auto max-h-[calc(100dvh-var(--header-offset)-1rem)] w-auto max-w-80 overflow-y-auto rounded-2xl p-2 text-text lg:hidden"
   >
     <Nav lang={lang} orientation="vertical" />
+    <CvLink lang={lang} class="mt-2 flex w-full" />
   </div>
 </div>
 

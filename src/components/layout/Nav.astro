@@ -21,8 +21,9 @@ const vertical = orientation === 'vertical';
         <a
           href={`#${id}`}
           class:list={[
-            'inline-flex min-h-11 min-w-11 items-center rounded-lg px-3 font-medium text-text no-underline hover:text-accent',
-            vertical ? 'w-full' : 'justify-center',
+            'inline-flex min-h-11 min-w-11 items-center rounded-lg font-medium text-text no-underline hover:text-accent',
+            // Tighter in the bar, so it still fits at 1024 px with WCAG 1.4.12 text spacing.
+            vertical ? 'w-full px-3' : 'justify-center px-2',
           ]}
         >
           {label}

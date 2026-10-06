@@ -1,0 +1,27 @@
+---
+// "Download CV" (ui.downloadCv) as a primary button: a plain download link, no JS.
+// The caller sets the display (and the breakpoint where it shows) through `class`.
+import { CV_PATHS } from '../../config';
+import type { Locale } from '../../i18n/config';
+import { getContent } from '../../i18n/utils';
+
+interface Props {
+  lang: Locale;
+  class?: string;
+}
+
+const { lang, class: className } = Astro.props;
+const { ui } = getContent(lang);
+---
+
+<a
+  href={CV_PATHS[lang]}
+  download
+  type="application/pdf"
+  class:list={[
+    'min-h-11 shrink-0 items-center justify-center rounded-lg bg-btn-bg px-3 font-medium whitespace-nowrap text-btn-text no-underline',
+    className,
+  ]}
+>
+  {ui.downloadCv}
+</a>
