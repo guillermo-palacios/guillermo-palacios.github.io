@@ -127,8 +127,8 @@ Cada tarea va en su propia rama, con el contenido del commit confirmado contigo 
   *Nota (resuelta):* botón «Descargar CV» (`ui.downloadCv`, spec §5) en `layout/CvLink`: en la barra desde `lg` y, por debajo, al final del panel del menú móvil. Rutas de los PDF en `CV_PATHS` (`src/config.ts`). Medido en ES y EN a 1024, 1280, 1366, 1440 y 1920 px, con y sin el espaciado de texto de WCAG 1.4.12: con el botón, la barra se desbordaba con 1.4.12 (ES: 54,5 px a 1024 y 30,5 px desde 1280; EN: 17,8 px a 1024). Se arregla sin mover la Nav, solo desde `lg`: enlaces de la Nav horizontal `px-2`, idioma `lg:px-2`, botón de CV `px-3` y gap de la barra `lg:gap-0.5`. Ahora quedan libres 74 px (ES) y 103 px (EN) a 1024, y 98 y 127 px desde 1280. Con 1.4.12 el logo pasa a dos líneas y no se sale nada; margen hasta desbordar: ES 9,5 px a 1024 y 33,5 px desde 1280; EN 46 y 70 px. El menú móvil no cambia. Ojo: en ES a 1024 px con el espaciado de WCAG 1.4.12 el margen es solo de 9,5 px; hay que volver a medir si cambian las etiquetas de la navegación y tras la revisión final de textos.
 - [ ] **8. `feat/hero`**.
   *Acepta:* un solo h1; el LCP es el retrato con `fetchpriority`; a 320 px no hay scroll horizontal.
-  *Valorar:* añadir esferas CSS y repartir el mesh; si se hace, remedir el contraste en los dos temas, incluidos los peores puntos del mesh.
-  *Nota:* separar nombre y rol en el h1, con el separador `|` solo visual (`aria-hidden`).
+  *Valorar:* añadir esferas CSS; si se hace, remedir el contraste en los dos temas, incluidos los peores puntos de las esferas. El reparto del mesh se aplaza hasta después de la tarea 12.
+  *Nota:* el h1 lleva el nombre y el rol en dos `span` (`hero.name` y `hero.role`, en lugar de `hero.title`), cada uno en su línea y sin separador visible (spec §6.1); el rol va en `--accent` y algo más pequeño.
   *Nota:* el `alt` del retrato se escribe aquí (en los JSON). Las imágenes usan `<Picture>` con `fallbackFormat="webp"`: con un máster WebP, Astro genera por defecto el `<img>` de respaldo en PNG, mucho más pesado.
 - [ ] **9. `feat/experience`**.
   *Acepta:* texto idéntico a §6.2; chips en monoespaciada.
@@ -145,6 +145,7 @@ Cada tarea va en su propia rama, con el contenido del commit confirmado contigo 
 - [ ] **12. `feat/education-contact`**.
   *Acepta:* las certificaciones no se renderizan con `[]` y sí con un elemento de prueba; el footer tiene los tres enlaces.
   *Nota:* las etiquetas de campo del JSON (`education.languages.label`, `education.continuousLearning.label`, `education.certificationsLabel` y `contact.labels`) vienen de nombres de campo de la spec y no están aprobadas como texto visible; se decide una a una cuáles se muestran y con qué texto.
+  *Pendiente tras esta tarea:* repartir el mesh por toda la página (aplazado en la tarea 8), ya con todas las secciones montadas, y remedir el contraste en los dos temas, incluidos los peores puntos del mesh.
 - [ ] **13. `feat/light-theme`**: pulir el tema claro y activar `prefers-color-scheme`; quitar la nota de §9.
   *Acepta:* contraste ≥ 4,5:1 en los peores puntos del mesh; axe limpio en claro.
   *Nota:* el alfa de `--mesh-2` en el tema claro (0,07) está limitado por el contraste de `--accent` sobre el pico del mesh (4,73:1).
