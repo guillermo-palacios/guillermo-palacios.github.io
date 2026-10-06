@@ -122,7 +122,7 @@ Cada tarea va en su propia rama, con el contenido del commit confirmado contigo 
 - [x] **6. `feat/header`**: BaseLayout, SkipLink, Header, Nav, MobileMenu, LanguageSwitcher, ThemeToggle y anti-parpadeo.
   *Acepta:* todo operable con teclado; sin parpadeo; áreas táctiles ≥ 44 px; JS < 2 KB.
   *Nota:* ThemeToggle usa dos etiquetas (`ui.theme.toLight` / `ui.theme.toDark`) que cambian con el estado, sin `aria-pressed` (nunca ambas cosas).
-- [ ] **7. `chore/assets`**: script de imágenes, retrato WebP, capturas y CV.
+- [x] **7. `chore/assets`**: script de imágenes, retrato WebP, capturas y CV.
   *Acepta:* `portrait.webp` < 300 KB (si no, se informa del peso real y se decide); el build genera AVIF y WebP.
   *Nota (resuelta):* botón «Descargar CV» (`ui.downloadCv`, spec §5) en `layout/CvLink`: en la barra desde `lg` y, por debajo, al final del panel del menú móvil. Rutas de los PDF en `CV_PATHS` (`src/config.ts`). Medido en ES y EN a 1024, 1280, 1366, 1440 y 1920 px, con y sin el espaciado de texto de WCAG 1.4.12: con el botón, la barra se desbordaba con 1.4.12 (ES: 54,5 px a 1024 y 30,5 px desde 1280; EN: 17,8 px a 1024). Se arregla sin mover la Nav, solo desde `lg`: enlaces de la Nav horizontal `px-2`, idioma `lg:px-2`, botón de CV `px-3` y gap de la barra `lg:gap-0.5`. Ahora quedan libres 74 px (ES) y 103 px (EN) a 1024, y 98 y 127 px desde 1280. Con 1.4.12 el logo pasa a dos líneas y no se sale nada; margen hasta desbordar: ES 9,5 px a 1024 y 33,5 px desde 1280; EN 46 y 70 px. El menú móvil no cambia. Ojo: en ES a 1024 px con el espaciado de WCAG 1.4.12 el margen es solo de 9,5 px; hay que volver a medir si cambian las etiquetas de la navegación y tras la revisión final de textos.
 - [ ] **8. `feat/hero`**.
