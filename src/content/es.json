@@ -43,8 +43,10 @@
     "linkedin": "https://www.linkedin.com/in/guillermo-palacios-garcia"
   },
   "hero": {
-    "title": "Guillermo Palacios | Ingeniero de Software",
+    "name": "Guillermo Palacios",
+    "role": "Ingeniero de Software",
     "subtitle": "Ingeniero Informático (Ingeniería del Software). Backend, full-stack y desarrollo asistido por IA.",
+    "portraitAlt": "Retrato de Guillermo Palacios García sonriendo, con traje",
     "cta": {
       "cv": "Descargar CV (PDF)",
       "contact": "Contactar"

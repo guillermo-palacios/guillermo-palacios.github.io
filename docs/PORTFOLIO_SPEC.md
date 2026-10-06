@@ -60,7 +60,7 @@ No hay sección "Sobre mí" independiente: hero y formación la cubren.
 ## 6. Contenido (versión final en español)
 
 ### 6.1 Hero
-- **Titular:** Guillermo Palacios | Ingeniero de Software
+- **Titular:** un único `h1` en dos líneas, sin separador visible: «Guillermo Palacios» (nombre) e «Ingeniero de Software» (rol, en `--accent` y algo más pequeño).
 - **Subtítulo:** Ingeniero Informático (Ingeniería del Software). Backend, full-stack y desarrollo asistido por IA.
 - **Foto:** PNG recortado optimizado a WebP/AVIF con transparencia, `fetchpriority="high"`, `alt` descriptivo.
 - **CTAs:** `Descargar CV (PDF)` · `Contactar` (mailto) · iconos a GitHub y LinkedIn.

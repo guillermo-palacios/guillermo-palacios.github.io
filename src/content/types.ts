@@ -81,8 +81,11 @@ export interface SiteContent {
     linkedin: string;
   };
   hero: {
-    title: string;
+    // The two lines of the single h1, with no visible separator (spec §6.1).
+    name: string;
+    role: string;
     subtitle: string;
+    portraitAlt: string;
     cta: {
       cv: string;
       contact: string;

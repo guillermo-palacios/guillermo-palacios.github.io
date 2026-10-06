@@ -1,9 +1,9 @@
 ---
-// Provisional page (task 5): only the hero title and subtitle. Sections arrive in tasks 8–12.
+// One-page site: the hero for now; the other sections arrive in tasks 9–12.
 import type { GetStaticPaths, InferGetStaticPropsType } from 'astro';
+import Hero from '../../components/sections/Hero.astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { LOCALES } from '../../i18n/config';
-import { getContent } from '../../i18n/utils';
 
 export const getStaticPaths = (() =>
   LOCALES.map((lang) => ({
@@ -14,12 +14,8 @@ export const getStaticPaths = (() =>
 type Props = InferGetStaticPropsType<typeof getStaticPaths>;
 
 const { lang } = Astro.props;
-const { hero } = getContent(lang);
 ---
 
 <BaseLayout lang={lang}>
-  <div class="mx-auto max-w-5xl px-4 py-16 sm:px-6 lg:py-24">
-    <h1>{hero.title}</h1>
-    <p class="mt-6">{hero.subtitle}</p>
-  </div>
+  <Hero lang={lang} />
 </BaseLayout>

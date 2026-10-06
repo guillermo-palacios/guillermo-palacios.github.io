@@ -1,0 +1,77 @@
+---
+// Hero (spec §6.1): a single h1 with name and role on their own lines, the subtitle, two CTAs
+// and the social links. From lg the text sits on the left and the portrait on the right; below
+// lg the portrait follows the text, capped at 20rem so the heading and CTAs fit at 390×844.
+import { Picture } from 'astro:assets';
+import portrait from '../../assets/portrait/portrait.webp';
+import { CV_PATHS } from '../../config';
+import type { Locale } from '../../i18n/config';
+import { getContent } from '../../i18n/utils';
+import Icon from '../ui/Icon.astro';
+
+interface Props {
+  lang: Locale;
+}
+
+const { lang } = Astro.props;
+const { hero, profile, ui } = getContent(lang);
+
+const socialLinks = [
+  { href: profile.github, label: ui.social.github, icon: 'github' },
+  { href: profile.linkedin, label: ui.social.linkedin, icon: 'linkedin' },
+] as const;
+---
+
+<section class="mx-auto grid max-w-5xl items-center gap-8 px-4 py-8 sm:px-6 lg:grid-cols-[minmax(0,1fr)_26rem] lg:py-16">
+  <div>
+    {/* The space between the spans keeps the accessible name from running both lines together. */}
+    <h1>
+      <span class="block">{hero.name}</span>{' '}
+      <span class="mt-2 block text-h2 text-accent">{hero.role}</span>
+    </h1>
+    <p class="mt-6">{hero.subtitle}</p>
+    <div class="mt-8 flex flex-wrap gap-3">
+      <a
+        href={CV_PATHS[lang]}
+        download
+        type="application/pdf"
+        class="inline-flex min-h-11 items-center justify-center rounded-lg bg-btn-bg px-5 font-medium text-btn-text no-underline"
+      >
+        {hero.cta.cv}
+      </a>
+      <a
+        href={`mailto:${profile.email}`}
+        class="inline-flex min-h-11 items-center justify-center rounded-lg border-2 border-accent px-5 font-medium text-text no-underline hover:text-accent"
+      >
+        {hero.cta.contact}
+      </a>
+    </div>
+    {/* Pulled left so the glyphs line up with the text edge; each link keeps its 44×44 target. */}
+    <ul class="mt-4 -ms-2.5 flex gap-1">
+      {socialLinks.map(({ href, label, icon }) => (
+        <li>
+          <a
+            href={href}
+            class="inline-flex size-11 items-center justify-center rounded-lg text-text hover:text-accent"
+          >
+            <span class="sr-only">{label}</span>
+            <Icon name={icon} />
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+  <Picture
+    src={portrait}
+    alt={hero.portraitAlt}
+    formats={['avif', 'webp']}
+    fallbackFormat="webp"
+    widths={[400, 800, 1200]}
+    sizes="(min-width: 64rem) 26rem, (min-width: 22rem) 20rem, calc(100vw - 2rem)"
+    width={1200}
+    height={1200}
+    fetchpriority="high"
+    loading="eager"
+    class="mx-auto block h-auto w-full max-w-80 lg:max-w-none"
+  />
+</section>

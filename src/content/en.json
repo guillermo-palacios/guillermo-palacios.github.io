@@ -43,8 +43,10 @@
     "linkedin": "https://www.linkedin.com/in/guillermo-palacios-garcia"
   },
   "hero": {
-    "title": "Guillermo Palacios | Software Engineer",
+    "name": "Guillermo Palacios",
+    "role": "Software Engineer",
     "subtitle": "Computer Engineer (Software Engineering). Backend, full-stack and AI-assisted development.",
+    "portraitAlt": "Portrait of Guillermo Palacios García smiling, wearing a suit",
     "cta": {
       "cv": "Download CV (PDF)",
       "contact": "Contact"
