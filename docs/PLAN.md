@@ -125,7 +125,7 @@ Cada tarea va en su propia rama, con el contenido del commit confirmado contigo 
 - [x] **7. `chore/assets`**: script de imágenes, retrato WebP, capturas y CV.
   *Acepta:* `portrait.webp` < 300 KB (si no, se informa del peso real y se decide); el build genera AVIF y WebP.
   *Nota (resuelta):* botón «Descargar CV» (`ui.downloadCv`, spec §5) en `layout/CvLink`: en la barra desde `lg` y, por debajo, al final del panel del menú móvil. Rutas de los PDF en `CV_PATHS` (`src/config.ts`). Medido en ES y EN a 1024, 1280, 1366, 1440 y 1920 px, con y sin el espaciado de texto de WCAG 1.4.12: con el botón, la barra se desbordaba con 1.4.12 (ES: 54,5 px a 1024 y 30,5 px desde 1280; EN: 17,8 px a 1024). Se arregla sin mover la Nav, solo desde `lg`: enlaces de la Nav horizontal `px-2`, idioma `lg:px-2`, botón de CV `px-3` y gap de la barra `lg:gap-0.5`. Ahora quedan libres 74 px (ES) y 103 px (EN) a 1024, y 98 y 127 px desde 1280. Con 1.4.12 el logo pasa a dos líneas y no se sale nada; margen hasta desbordar: ES 9,5 px a 1024 y 33,5 px desde 1280; EN 46 y 70 px. El menú móvil no cambia. Ojo: en ES a 1024 px con el espaciado de WCAG 1.4.12 el margen es solo de 9,5 px; hay que volver a medir si cambian las etiquetas de la navegación y tras la revisión final de textos.
-- [ ] **8. `feat/hero`**.
+- [x] **8. `feat/hero`**.
   *Acepta:* un solo h1; el LCP es el retrato con `fetchpriority`; a 320 px no hay scroll horizontal.
   *Valorar (resuelto):* esferas descartadas; panel glass único.
   *Nota:* contenedor máximo de 80rem (`--container-page`, clase `max-w-page`), compartido por la cabecera, el hero y las secciones, con `--header-gap` como margen lateral; la medida de lectura (44.16em) no cambia. Espacio libre medido en la cabecera: a 1024 px no cambia, porque la barra ya ocupaba todo el ancho (ES 74 px, EN 103 px; con el espaciado de WCAG 1.4.12, margen hasta desbordar ES 9,5 px y EN 46 px, los mismos que en la tarea 7); a 1280 px, ES 330 px y EN 359 px (1.4.12: 265,5 y 302 px); desde 1366 px, ES 354 px y EN 383 px (1.4.12: 289,5 y 326 px).
@@ -148,6 +148,7 @@ Cada tarea va en su propia rama, con el contenido del commit confirmado contigo 
   *Acepta:* las certificaciones no se renderizan con `[]` y sí con un elemento de prueba; el footer tiene los tres enlaces.
   *Nota:* las etiquetas de campo del JSON (`education.languages.label`, `education.continuousLearning.label`, `education.certificationsLabel` y `contact.labels`) vienen de nombres de campo de la spec y no están aprobadas como texto visible; se decide una a una cuáles se muestran y con qué texto.
   *Pendiente tras esta tarea:* repartir el mesh por toda la página (aplazado en la tarea 8), ya con todas las secciones montadas, y remedir el contraste en los dos temas, incluidos los peores puntos del mesh.
+  *Nota:* el reparto del mesh y el fondo de página con imagen por piezas (rama aparte, ver Pendientes) se deciden juntos.
 - [ ] **13. `feat/light-theme`**: pulir el tema claro y activar `prefers-color-scheme`; quitar la nota de §9.
   *Acepta:* contraste ≥ 4,5:1 en los peores puntos del mesh; axe limpio en claro.
   *Nota:* el alfa de `--mesh-2` en el tema claro (0,07) está limitado por el contraste de `--accent` sobre el pico del mesh (4,73:1).
