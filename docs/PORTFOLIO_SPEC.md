@@ -63,7 +63,7 @@ No hay sección "Sobre mí" independiente: hero y formación la cubren.
 - **Titular:** un único `h1` en dos líneas, sin separador visible: «Guillermo Palacios» (nombre) e «Ingeniero de Software» (rol, en `--accent` y algo más pequeño).
 - **Subtítulo:** Ingeniero Informático (Ingeniería del Software). Backend, full-stack y desarrollo asistido por IA.
 - **Foto:** PNG recortado optimizado a WebP/AVIF con transparencia, `fetchpriority="high"`, `alt` descriptivo.
-- **CTAs:** `Descargar CV (PDF)` · `Contactar` (mailto) · iconos a GitHub y LinkedIn.
+- **CTAs:** `Descargar CV (PDF)` · `Contactar` (mailto) · píldoras con icono y texto a GitHub y LinkedIn.
 
 ### 6.2 Experiencia
 - **Puesto:** Desarrollador Web Full-Stack (contrato de prácticas)
@@ -138,7 +138,10 @@ Glassmorphism sobre fondo gradient mesh, inspirado en referencias de esferas y a
 - **Tema oscuro (por defecto):** negro con mesh verde jade y brillos.
 - **Tema claro:** fondo principal blanco con el mismo mesh jade, más tenue.
 - **Navegación, tarjetas, chips y botones secundarios:** glass. Texto largo siempre sobre capa semiopaca.
-- **Esferas/anillos 3D:** solo en el hero (y opcionalmente en el footer). Máximo 2–3, imágenes pre-renderizadas AVIF/WebP ≤ 30 KB cada una, `alt=""` y `aria-hidden="true"`.
+- **Hero:** un único panel glass con el texto y el retrato. El retrato va anclado al borde inferior del panel, que lo recorta con su radio; detrás lleva un degradado radial jade suave (`--portrait-glow`, por tema), sin `backdrop-filter` adicional. Dentro del panel no hay glass anidado: los botones secundarios llevan borde de acento y los enlaces a GitHub y LinkedIn son píldoras neutras con borde sutil (`--glass-border`).
+- **Ancho:** contenedor máximo de 80rem (`--container-page`, clase `max-w-page`).
+- Ese contenedor lo comparten la cabecera, el hero y las secciones, con el mismo margen lateral (`--header-gap`).
+- **Fondo de página:** imagen por piezas, pendiente (en una rama aparte). Hasta entonces, el mesh CSS de §7.3.
 - **Sin animaciones** en la fase 1. Si se añaden después, respetar `prefers-reduced-motion`.
 - Se implementa y pule primero el tema oscuro; el claro usa los mismos tokens y se verifica por separado.
 

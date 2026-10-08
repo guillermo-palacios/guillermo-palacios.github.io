@@ -67,6 +67,7 @@ export interface SiteContent {
       toLight: string;
       toDark: string;
     };
+    // Visible text of the hero pills, which is also their whole accessible name (no aria-label).
     social: {
       github: string;
       linkedin: string;

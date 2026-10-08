@@ -25,6 +25,9 @@
   --mesh-1: rgba(52, 211, 153, 0.2);
   --mesh-2: rgba(4, 120, 87, 0.45);
   --mesh-3: rgba(52, 211, 153, 0.1);
+
+  /* Soft jade glow behind the hero portrait, inside the glass panel (no extra backdrop-filter). */
+  --portrait-glow: rgba(52, 211, 153, 0.22);
 }
 
 :root[data-theme='light'] {
@@ -51,6 +54,8 @@
   --mesh-1: rgba(52, 211, 153, 0.14);
   --mesh-2: rgba(4, 120, 87, 0.07);
   --mesh-3: rgba(52, 211, 153, 0.08);
+
+  --portrait-glow: rgba(52, 211, 153, 0.14);
 }
 
 /* Floating fixed header: gap to the viewport edges and bar height (44px targets + padding). */
@@ -103,6 +108,12 @@
   --font-heading:
     'Sora Variable', 'Sora Fallback', ui-sans-serif, system-ui, sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+  /*
+   * Maximum width shared by the header, the hero and every section (max-w-page). The side gutter
+   * is --header-gap, so the hero panel and the header bar have exactly the same width.
+   */
+  --container-page: 80rem;
 
   /*
    * Type scale (spec §7.4): rem only, nothing below 0.875rem. Fluid headings keep max <= 2.5 x min

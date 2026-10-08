@@ -30,8 +30,8 @@
       "toDark": "Switch to dark theme"
     },
     "social": {
-      "github": "GitHub profile",
-      "linkedin": "LinkedIn profile"
+      "github": "GitHub",
+      "linkedin": "LinkedIn"
     }
   },
   "profile": {
@@ -46,7 +46,7 @@
     "name": "Guillermo Palacios",
     "role": "Software Engineer",
     "subtitle": "Computer Engineer (Software Engineering). Backend, full-stack and AI-assisted development.",
-    "portraitAlt": "Portrait of Guillermo Palacios García smiling, wearing a suit",
+    "portraitAlt": "Portrait of Guillermo Palacios García smiling, wearing a black suit",
     "cta": {
       "cv": "Download CV (PDF)",
       "contact": "Contact"

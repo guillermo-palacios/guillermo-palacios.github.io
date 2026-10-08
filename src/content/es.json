@@ -30,8 +30,8 @@
       "toDark": "Activar tema oscuro"
     },
     "social": {
-      "github": "Perfil de GitHub",
-      "linkedin": "Perfil de LinkedIn"
+      "github": "GitHub",
+      "linkedin": "LinkedIn"
     }
   },
   "profile": {
@@ -46,7 +46,7 @@
     "name": "Guillermo Palacios",
     "role": "Ingeniero de Software",
     "subtitle": "Ingeniero Informático (Ingeniería del Software). Backend, full-stack y desarrollo asistido por IA.",
-    "portraitAlt": "Retrato de Guillermo Palacios García sonriendo, con traje",
+    "portraitAlt": "Retrato de Guillermo Palacios García sonriendo, con traje negro",
     "cta": {
       "cv": "Descargar CV (PDF)",
       "contact": "Contactar"

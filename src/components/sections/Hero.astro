@@ -1,7 +1,8 @@
 ---
-// Hero (spec §6.1): a single h1 with name and role on their own lines, the subtitle, two CTAs
-// and the social links. From lg the text sits on the left and the portrait on the right; below
-// lg the portrait follows the text, capped at 20rem so the heading and CTAs fit at 390×844.
+// Hero (spec §6.1): a single glass panel, as wide as the header bar (max-w-page and the
+// --header-gap gutter). Text first; from md the portrait takes a right-hand column. The portrait
+// sits on the panel's bottom edge and the panel clips it (overflow-hidden and its radius); behind
+// it, a soft jade glow in plain CSS, so there is no nested glass.
 import { Picture } from 'astro:assets';
 import portrait from '../../assets/portrait/portrait.webp';
 import { CV_PATHS } from '../../config';
@@ -22,56 +23,65 @@ const socialLinks = [
 ] as const;
 ---
 
-<section class="mx-auto grid max-w-5xl items-center gap-8 px-4 py-8 sm:px-6 lg:grid-cols-[minmax(0,1fr)_26rem] lg:py-16">
-  <div>
-    {/* The space between the spans keeps the accessible name from running both lines together. */}
-    <h1>
-      <span class="block">{hero.name}</span>{' '}
-      <span class="mt-2 block text-h2 text-accent">{hero.role}</span>
-    </h1>
-    <p class="mt-6">{hero.subtitle}</p>
-    <div class="mt-8 flex flex-wrap gap-3">
-      <a
-        href={CV_PATHS[lang]}
-        download
-        type="application/pdf"
-        class="inline-flex min-h-11 items-center justify-center rounded-lg bg-btn-bg px-5 font-medium text-btn-text no-underline"
-      >
-        {hero.cta.cv}
-      </a>
-      <a
-        href={`mailto:${profile.email}`}
-        class="inline-flex min-h-11 items-center justify-center rounded-lg border-2 border-accent px-5 font-medium text-text no-underline hover:text-accent"
-      >
-        {hero.cta.contact}
-      </a>
+<section class="px-(--header-gap) pt-4 pb-8 md:pt-6">
+  <div class="glass mx-auto grid max-w-page overflow-hidden rounded-3xl md:grid-cols-[minmax(0,1fr)_auto]">
+    <div class="self-center p-5 sm:p-8 lg:p-10">
+      {/* The space between the spans keeps the accessible name from running both lines together. */}
+      <h1>
+        <span class="block">{hero.name}</span>{' '}
+        <span class="mt-2 block text-h2 text-accent">{hero.role}</span>
+      </h1>
+      <p class="mt-6 text-balance">{hero.subtitle}</p>
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a
+          href={CV_PATHS[lang]}
+          download
+          type="application/pdf"
+          class="inline-flex min-h-11 items-center justify-center rounded-lg bg-btn-bg px-5 font-medium text-btn-text no-underline"
+        >
+          {hero.cta.cv}
+        </a>
+        <a
+          href={`mailto:${profile.email}`}
+          class="inline-flex min-h-11 items-center justify-center rounded-lg border-2 border-accent px-5 font-medium text-text no-underline hover:text-accent"
+        >
+          {hero.cta.contact}
+        </a>
+      </div>
+      {/* Neutral pills: the visible text is the whole accessible name; the icon is aria-hidden. */}
+      <ul class="mt-3 flex flex-wrap gap-3">
+        {socialLinks.map(({ href, label, icon }) => (
+          <li>
+            <a
+              href={href}
+              class="inline-flex min-h-11 items-center gap-2 rounded-lg border border-glass-border px-4 font-medium text-text no-underline hover:border-accent hover:text-accent"
+            >
+              <Icon name={icon} class="size-5" />
+              {label}
+            </a>
+          </li>
+        ))}
+      </ul>
     </div>
-    {/* Pulled left so the glyphs line up with the text edge; each link keeps its 44×44 target. */}
-    <ul class="mt-4 -ms-2.5 flex gap-1">
-      {socialLinks.map(({ href, label, icon }) => (
-        <li>
-          <a
-            href={href}
-            class="inline-flex size-11 items-center justify-center rounded-lg text-text hover:text-accent"
-          >
-            <span class="sr-only">{label}</span>
-            <Icon name={icon} />
-          </a>
-        </li>
-      ))}
-    </ul>
+    {/*
+     * items-end keeps the image on the bottom edge, with no padding below it. The master's last
+     * rows are a soft, half-transparent edge: -mb-0.5 pushes them 2px under the panel edge, where
+     * overflow-hidden cuts them, so no 1px seam shows at fractional zoom levels.
+     */}
+    <div class="flex items-end justify-center bg-[radial-gradient(ellipse_at_50%_65%,var(--portrait-glow),transparent_70%)] md:pt-8">
+      <Picture
+        src={portrait}
+        alt={hero.portraitAlt}
+        formats={['avif', 'webp']}
+        fallbackFormat="webp"
+        widths={[400, 800, 1200]}
+        sizes="(min-width: 80rem) 28rem, (min-width: 64rem) 24rem, (min-width: 48rem) 20rem, 18rem"
+        width={448}
+        height={448}
+        fetchpriority="high"
+        loading="eager"
+        class="-mb-0.5 block h-auto w-72 max-w-full md:w-80 lg:w-96 xl:w-112"
+      />
+    </div>
   </div>
-  <Picture
-    src={portrait}
-    alt={hero.portraitAlt}
-    formats={['avif', 'webp']}
-    fallbackFormat="webp"
-    widths={[400, 800, 1200]}
-    sizes="(min-width: 64rem) 26rem, (min-width: 22rem) 20rem, calc(100vw - 2rem)"
-    width={1200}
-    height={1200}
-    fetchpriority="high"
-    loading="eager"
-    class="mx-auto block h-auto w-full max-w-80 lg:max-w-none"
-  />
 </section>
