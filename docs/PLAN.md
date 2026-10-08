@@ -127,7 +127,9 @@ Cada tarea va en su propia rama, con el contenido del commit confirmado contigo 
   *Nota (resuelta):* botón «Descargar CV» (`ui.downloadCv`, spec §5) en `layout/CvLink`: en la barra desde `lg` y, por debajo, al final del panel del menú móvil. Rutas de los PDF en `CV_PATHS` (`src/config.ts`). Medido en ES y EN a 1024, 1280, 1366, 1440 y 1920 px, con y sin el espaciado de texto de WCAG 1.4.12: con el botón, la barra se desbordaba con 1.4.12 (ES: 54,5 px a 1024 y 30,5 px desde 1280; EN: 17,8 px a 1024). Se arregla sin mover la Nav, solo desde `lg`: enlaces de la Nav horizontal `px-2`, idioma `lg:px-2`, botón de CV `px-3` y gap de la barra `lg:gap-0.5`. Ahora quedan libres 74 px (ES) y 103 px (EN) a 1024, y 98 y 127 px desde 1280. Con 1.4.12 el logo pasa a dos líneas y no se sale nada; margen hasta desbordar: ES 9,5 px a 1024 y 33,5 px desde 1280; EN 46 y 70 px. El menú móvil no cambia. Ojo: en ES a 1024 px con el espaciado de WCAG 1.4.12 el margen es solo de 9,5 px; hay que volver a medir si cambian las etiquetas de la navegación y tras la revisión final de textos.
 - [ ] **8. `feat/hero`**.
   *Acepta:* un solo h1; el LCP es el retrato con `fetchpriority`; a 320 px no hay scroll horizontal.
-  *Valorar:* añadir esferas CSS; si se hace, remedir el contraste en los dos temas, incluidos los peores puntos de las esferas. El reparto del mesh se aplaza hasta después de la tarea 12.
+  *Valorar (resuelto):* esferas descartadas; panel glass único.
+  *Nota:* contenedor máximo de 80rem (`--container-page`, clase `max-w-page`), compartido por la cabecera, el hero y las secciones, con `--header-gap` como margen lateral; la medida de lectura (44.16em) no cambia. Espacio libre medido en la cabecera: a 1024 px no cambia, porque la barra ya ocupaba todo el ancho (ES 74 px, EN 103 px; con el espaciado de WCAG 1.4.12, margen hasta desbordar ES 9,5 px y EN 46 px, los mismos que en la tarea 7); a 1280 px, ES 330 px y EN 359 px (1.4.12: 265,5 y 302 px); desde 1366 px, ES 354 px y EN 383 px (1.4.12: 289,5 y 326 px).
+  *Nota:* `ui.social.github` y `ui.social.linkedin` son el texto visible de las píldoras («GitHub», «LinkedIn») y su único nombre accesible, no un nombre descriptivo.
   *Nota:* el h1 lleva el nombre y el rol en dos `span` (`hero.name` y `hero.role`, en lugar de `hero.title`), cada uno en su línea y sin separador visible (spec §6.1); el rol va en `--accent` y algo más pequeño.
   *Nota:* el `alt` del retrato se escribe aquí (en los JSON). Las imágenes usan `<Picture>` con `fallbackFormat="webp"`: con un máster WebP, Astro genera por defecto el `<img>` de respaldo en PNG, mucho más pesado.
 - [ ] **9. `feat/experience`**.
@@ -171,4 +173,4 @@ Cada tarea va en su propia rama, con el contenido del commit confirmado contigo 
 `npm run lint && npm run check && npm run build && npm run preview`. Después: axe y Lighthouse (móvil y escritorio, los dos temas) sobre `/es/` y `/en/`, navegación solo con teclado, 320 px, zoom al 200 % y una pasada sin `backdrop-filter`.
 
 ## Pendientes (`TODO`, no bloquean hasta la tarea 17)
-favicon/OG · esferas 3D · URLs · meta descriptions · frase opcional de la sección de IA · métricas.
+favicon/OG · fondo de página con imagen por piezas (en una rama aparte) · URLs · meta descriptions · frase opcional de la sección de IA · métricas.
