@@ -25,6 +25,7 @@
       "label": "Menu"
     },
     "language": "Español",
+    "languageShort": "ES",
     "theme": {
       "toLight": "Switch to light theme",
       "toDark": "Switch to dark theme"
@@ -58,24 +59,28 @@
       "context": "Context",
       "highlights": "Highlights"
     },
+    "technologiesLabel": "Technologies used",
     "items": [
       {
         "role": "Full-Stack Web Developer (internship contract)",
         "company": "Cordoware",
-        "period": "February 2026 – July 2026 (6 months)",
+        "period": "February 2026 – July 2026",
         "location": "Córdoba, on-site",
         "context": "team of 3 developers with shared version control.",
         "description": "Full-stack web development covering the complete software lifecycle.",
         "highlights": [
           {
+            "tab": "CRM",
             "title": "Corporate CRM (full-stack)",
             "text": "end-to-end implementation (controllers, services and views) of the Quotes, Orders, Delivery Notes and Invoices sales modules, with the business logic and the conversion flows between documents. It was the most complex module of the period. Optimization of Data Annotations to ensure data integrity."
           },
           {
+            "tab": "Legacy",
             "title": "Legacy software modernization",
             "text": "refactoring and upgrading of legacy systems in production towards a component-based architecture and modern visual standards, preserving the original business logic."
           },
           {
+            "tab": "Backend",
             "title": "Backend and e-commerce",
             "text": "relational database modeling with Entity Framework (Code-First), migration of processes to asynchronous communication (AJAX/JSON/jQuery) and conditional navigation secured with ASP.NET Identity."
           }

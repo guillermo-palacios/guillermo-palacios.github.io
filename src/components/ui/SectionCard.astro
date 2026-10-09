@@ -1,0 +1,28 @@
+---
+// Section card: the h2 sits in a tab joined to the top-left corner of the card, both on one
+// glass surface (.section-card in global.css), so they read as a single shape with no seam. The
+// tab and the body are siblings above that surface, which is decoration only; no glass is
+// nested. The tab grows with the title. The section's aria-labelledby points to titleId.
+interface Props {
+  titleId: string;
+  title: string;
+  class?: string;
+}
+
+const { titleId, title, class: className } = Astro.props;
+---
+
+<div class:list={['section-card', className]}>
+  <div class="section-card-shape">
+    <div class="section-card-shadow"></div>
+    <div class="section-card-glass">
+      <div class="section-card-fillet"></div>
+    </div>
+  </div>
+  <div class="section-card-tab px-5 pt-4 pb-1 sm:px-8 lg:px-10">
+    <h2 id={titleId}>{title}</h2>
+  </div>
+  <div class="section-card-body p-5 sm:p-8 lg:p-10">
+    <slot />
+  </div>
+</div>

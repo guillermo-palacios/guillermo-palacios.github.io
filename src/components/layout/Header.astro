@@ -1,7 +1,8 @@
 ---
 // Floating glass bar: fixed, or absolute on short viewports (--header-position in global.css).
 // Order from spec §5. Below lg the nav links and the CV button live in the MobileMenu panel.
-// From lg up, gaps and paddings are tight enough to fit at 1024 px with WCAG 1.4.12 text spacing.
+// From lg up, a three-column grid: logo on the left, the nav centred in the bar and the controls
+// on the right; gaps and paddings stay tight so it still fits at 1024 px.
 import type { Locale } from '../../i18n/config';
 import { getContent } from '../../i18n/utils';
 import CvLink from './CvLink.astro';
@@ -18,17 +19,19 @@ const { lang } = Astro.props;
 const { ui } = getContent(lang);
 ---
 
-<header class="glass [position:var(--header-position)] inset-x-(--header-gap) top-(--header-gap) z-40 mx-auto flex h-(--header-h) max-w-page items-center gap-1 rounded-2xl lg:gap-0.5 px-1 text-base sm:px-2">
+<header class="glass [position:var(--header-position)] inset-x-(--header-gap) top-(--header-gap) z-40 mx-auto flex h-(--header-h) max-w-page items-center gap-1 rounded-2xl px-1 text-base sm:px-2 lg:grid lg:grid-cols-[1fr_auto_1fr] lg:gap-0.5">
   <a
     href="#top"
     aria-label={ui.homeLink}
-    class="me-auto inline-flex min-h-11 items-center rounded-lg px-2 font-heading leading-tight font-semibold text-text no-underline hover:text-accent"
+    class="me-auto inline-flex min-h-11 items-center rounded-lg px-2 font-heading leading-tight font-semibold text-text no-underline hover:text-accent lg:justify-self-start"
   >
     {ui.brand}
   </a>
   <Nav lang={lang} class="hidden lg:block" />
-  <LanguageSwitcher lang={lang} />
-  <ThemeToggle lang={lang} />
-  <CvLink lang={lang} class="hidden lg:inline-flex" />
-  <MobileMenu lang={lang} />
+  <div class="flex items-center gap-1 lg:gap-0.5 lg:justify-self-end">
+    <LanguageSwitcher lang={lang} />
+    <ThemeToggle lang={lang} />
+    <CvLink lang={lang} class="hidden lg:inline-flex" />
+    <MobileMenu lang={lang} />
+  </div>
 </header>

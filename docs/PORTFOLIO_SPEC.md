@@ -68,7 +68,7 @@ No hay sección "Sobre mí" independiente: hero y formación la cubren.
 ### 6.2 Experiencia
 - **Puesto:** Desarrollador Web Full-Stack (contrato de prácticas)
 - **Empresa:** Cordoware
-- **Periodo:** febrero 2026 – julio 2026 (6 meses) · Córdoba, presencial
+- **Periodo:** febrero 2026 – julio 2026 · Córdoba, presencial
 - **Contexto:** equipo de 3 desarrolladores con control de versiones compartido.
 - **Descripción:** Desarrollo web full-stack cubriendo el ciclo de vida completo del software.
 - **Hitos:**
@@ -139,8 +139,8 @@ Glassmorphism sobre fondo gradient mesh, inspirado en referencias de esferas y a
 - **Tema claro:** fondo principal blanco con el mismo mesh jade, más tenue.
 - **Navegación, tarjetas, chips y botones secundarios:** glass. Texto largo siempre sobre capa semiopaca.
 - **Hero:** un único panel glass con el texto y el retrato. El retrato va anclado al borde inferior del panel, que lo recorta con su radio; detrás lleva un degradado radial jade suave (`--portrait-glow`, por tema), sin `backdrop-filter` adicional. Dentro del panel no hay glass anidado: los botones secundarios llevan borde de acento y los enlaces a GitHub y LinkedIn son píldoras neutras con borde sutil (`--glass-border`).
-- **Ancho:** contenedor máximo de 80rem (`--container-page`, clase `max-w-page`).
-- Ese contenedor lo comparten la cabecera, el hero y las secciones, con el mismo margen lateral (`--header-gap`).
+- **Ancho:** la cabecera usa el contenedor máximo de 80rem (`--container-page`, clase `max-w-page`), con margen lateral `--header-gap`.
+- El hero y las tarjetas de sección son más estrechos (`--container-section`, clase `max-w-section`: 4rem menos por cada lado, `--section-inset`) y van centrados, de modo que la barra sobresale a los lados; desde `lg` su margen lateral es `--section-gutter` (el de la cabecera más 4rem).
 - **Fondo de página:** imagen por piezas, pendiente (en una rama aparte). Hasta entonces, el mesh CSS de §7.3.
 - **Sin animaciones** en la fase 1. Si se añaden después, respetar `prefers-reduced-motion`.
 - Se implementa y pule primero el tema oscuro; el claro usa los mismos tokens y se verifica por separado.
@@ -194,7 +194,7 @@ Los jades brillantes del mesh son decorativos y nunca llevan texto encima. El te
 Objetivos de trabajo, no cifras garantizadas:
 - Lighthouse ≥ 95 en Performance, Accessibility, Best Practices y SEO, en móvil y escritorio.
 - LCP < 2,5 s, CLS < 0,1, INP < 200 ms.
-- JS total en torno a 50 KB comprimido: solo toggle de tema, selector de idioma y menú móvil.
+- JS total por debajo de 2 KB: solo toggle de tema, selector de idioma, menú móvil y pestañas de los hitos de Experiencia.
 - Imágenes AVIF/WebP con `width`/`height` y `srcset`; hero con `fetchpriority="high"`; capturas con `loading="lazy"`.
 - Iconos en SVG inline. Script inline mínimo en `<head>` para aplicar el tema sin parpadeo.
 - Tema: sigue `prefers-color-scheme` por defecto, toggle manual guardado en `localStorage`.

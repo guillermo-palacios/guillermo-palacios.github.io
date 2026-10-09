@@ -39,7 +39,7 @@ Astro + TypeScript (`strictest`) + Tailwind CSS. Salida 100 % estática. Rutas `
 
 ## Convenciones
 
-- Componentes Astro pequeños y sin JS por defecto. El JS total se limita al toggle de tema, el selector de idioma y el menú móvil.
+- Componentes Astro pequeños y sin JS por defecto. El JS total (por debajo de 2 KB) se limita al toggle de tema, el selector de idioma, el menú móvil y las pestañas de los hitos de Experiencia.
 - Colores siempre mediante tokens CSS (`:root` y `:root[data-theme="light"]`), nunca valores sueltos.
 - Iconos como SVG inline. Imágenes en AVIF/WebP con `width`/`height`.
 - HTML semántico, un solo `<h1>`, foco visible, áreas táctiles de 44×44 px como mínimo.

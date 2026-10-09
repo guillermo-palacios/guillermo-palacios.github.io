@@ -15,6 +15,8 @@ export interface Link {
 export interface Highlight {
   title: string;
   text: string;
+  // Short label of the highlight's tab; the panel shows the full title.
+  tab: string;
 }
 
 export interface Job {
@@ -62,7 +64,10 @@ export interface SiteContent {
       // Fixed name of the menu button; the open/closed state comes from the native aria-expanded.
       label: string;
     };
+    // Full name of the other language; the switcher shows languageShort ("EN" / "ES") and its
+    // accessible name is "languageShort, language".
     language: string;
+    languageShort: string;
     theme: {
       toLight: string;
       toDark: string;
@@ -94,10 +99,13 @@ export interface SiteContent {
   };
   experience: {
     title: string;
+    // Field names from the spec; not shown as visible text (PLAN task 9).
     labels: {
       context: string;
       highlights: string;
     };
+    // Title of the box with the technology tiles.
+    technologiesLabel: string;
     items: Job[];
   };
   projects: {

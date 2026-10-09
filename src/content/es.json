@@ -25,6 +25,7 @@
       "label": "Menú"
     },
     "language": "English",
+    "languageShort": "EN",
     "theme": {
       "toLight": "Activar tema claro",
       "toDark": "Activar tema oscuro"
@@ -58,24 +59,28 @@
       "context": "Contexto",
       "highlights": "Hitos"
     },
+    "technologiesLabel": "Tecnologías utilizadas",
     "items": [
       {
         "role": "Desarrollador Web Full-Stack (contrato de prácticas)",
         "company": "Cordoware",
-        "period": "febrero 2026 – julio 2026 (6 meses)",
+        "period": "febrero 2026 – julio 2026",
         "location": "Córdoba, presencial",
         "context": "equipo de 3 desarrolladores con control de versiones compartido.",
         "description": "Desarrollo web full-stack cubriendo el ciclo de vida completo del software.",
         "highlights": [
           {
+            "tab": "CRM",
             "title": "CRM corporativo (full-stack)",
             "text": "implementación end-to-end (controladores, servicios y vistas) de los módulos comerciales de Presupuestos, Pedidos, Albaranes y Facturas, con la lógica de negocio y los flujos de conversión entre documentos. Fue el módulo más complejo del periodo. Optimización de Data Annotations para garantizar la integridad de datos."
           },
           {
+            "tab": "Legacy",
             "title": "Modernización de software legacy",
             "text": "refactorización y actualización de sistemas heredados en producción hacia una arquitectura de componentes y estándares visuales modernos, preservando la lógica de negocio original."
           },
           {
+            "tab": "Backend",
             "title": "Backend y e-commerce",
             "text": "modelado de base de datos relacional con Entity Framework (Code-First), paso de procesos a comunicación asíncrona (AJAX/JSON/jQuery) y navegación condicional con seguridad mediante ASP.NET Identity."
           }

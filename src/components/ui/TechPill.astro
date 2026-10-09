@@ -1,0 +1,33 @@
+---
+// Technology pill (inside an <li>), shared by Experience, Projects and Stack: the hero's
+// GitHub/LinkedIn pill (subtle border, same radius, icon + visible name), but not a link, so no
+// hover, focus or pointer. Keys are the exact texts from the JSON. Technologies without a Tabler
+// brand icon use a generic Tabler one; a name missing here renders without icon and warns at build.
+import Icon, { type IconName } from './Icon.astro';
+
+const TECH_ICONS: Readonly<Record<string, IconName>> = {
+  'C#': 'csharp',
+  'ASP.NET Framework': 'server',
+  'SQL Server': 'database',
+  JavaScript: 'javascript',
+  jQuery: 'code',
+  HTML5: 'html5',
+  CSS3: 'css3',
+  'Bootstrap 5': 'bootstrap',
+};
+
+interface Props {
+  name: string;
+}
+
+const { name } = Astro.props;
+const icon = TECH_ICONS[name];
+if (!icon) {
+  console.warn(`[TechPill] "${name}" has no icon in TechPill.astro`);
+}
+---
+
+<span class="inline-flex min-h-11 cursor-default items-center gap-2 rounded-lg border border-glass-border px-4 font-mono text-sm font-medium text-text">
+  {icon && <Icon name={icon} class="size-5 shrink-0" />}
+  {name}
+</span>

@@ -14,6 +14,13 @@ export function getContent(lang: Locale): SiteContent {
   return content[lang];
 }
 
+// Capital first letter for display only: the JSON keeps the approved text, which often starts
+// in lowercase because the spec writes it after a label.
+export function capitalizeFirst(text: string, lang: Locale): string {
+  const [first = '', ...rest] = text;
+  return first.toLocaleUpperCase(lang) + rest.join('');
+}
+
 export function getLocalePath(lang: Locale): string {
   return `/${lang}/`;
 }

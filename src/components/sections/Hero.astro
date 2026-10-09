@@ -1,6 +1,7 @@
 ---
-// Hero (spec §6.1): a single glass panel, as wide as the header bar (max-w-page and the
-// --header-gap gutter). Text first; from md the portrait takes a right-hand column. The portrait
+// Hero (spec §6.1): a single glass panel, as wide as the section cards and narrower than the
+// header bar (max-w-section and the --section-gutter gutter). Text first; from md the portrait
+// takes a right-hand column. The portrait
 // sits on the panel's bottom edge and the panel clips it (overflow-hidden and its radius); behind
 // it, a soft jade glow in plain CSS, so there is no nested glass.
 import { Picture } from 'astro:assets';
@@ -23,8 +24,8 @@ const socialLinks = [
 ] as const;
 ---
 
-<section class="px-(--header-gap) pt-4 pb-8 md:pt-6">
-  <div class="glass mx-auto grid max-w-page overflow-hidden rounded-3xl md:grid-cols-[minmax(0,1fr)_auto]">
+<section class="px-(--section-gutter) pt-4 pb-8 md:pt-6">
+  <div class="glass mx-auto grid max-w-section overflow-hidden rounded-3xl md:grid-cols-[minmax(0,1fr)_auto]">
     <div class="self-center p-5 sm:p-8 lg:p-10">
       {/* The space between the spans keeps the accessible name from running both lines together. */}
       <h1>

@@ -28,6 +28,16 @@
 
   /* Soft jade glow behind the hero portrait, inside the glass panel (no extra backdrop-filter). */
   --portrait-glow: rgba(52, 211, 153, 0.22);
+
+  /*
+   * Sunken box inside a glass card (technologies): no backdrop-filter, since glass is never
+   * nested. A translucent fill a little darker than the card, an inner shadow at the top and a
+   * faint highlight under the bottom edge.
+   */
+  --well-bg: rgba(0, 0, 0, 0.24);
+  --well-border: rgba(255, 255, 255, 0.07);
+  --well-shadow:
+    inset 0 2px 6px 0 rgba(0, 0, 0, 0.45), 0 1px 0 0 rgba(255, 255, 255, 0.07);
 }
 
 :root[data-theme='light'] {
@@ -56,6 +66,11 @@
   --mesh-3: rgba(52, 211, 153, 0.08);
 
   --portrait-glow: rgba(52, 211, 153, 0.14);
+
+  --well-bg: rgba(11, 26, 21, 0.035);
+  --well-border: rgba(4, 120, 87, 0.14);
+  --well-shadow:
+    inset 0 2px 5px 0 rgba(11, 26, 21, 0.08), 0 1px 0 0 rgba(255, 255, 255, 0.9);
 }
 
 /* Floating fixed header: gap to the viewport edges and bar height (44px targets + padding). */
@@ -71,6 +86,22 @@
 @media (width >= 48rem) {
   :root {
     --header-gap: 0.75rem;
+  }
+}
+
+/*
+ * The hero and the section cards are narrower than the header bar, so the bar sticks out on both
+ * sides: --section-inset less per side, both in width (max-w-section) and, from lg, in the side
+ * gutter. Below lg they share the header's width.
+ */
+:root {
+  --section-inset: 4rem;
+  --section-gutter: var(--header-gap);
+}
+
+@media (width >= 64rem) {
+  :root {
+    --section-gutter: calc(var(--header-gap) + var(--section-inset));
   }
 }
 
@@ -100,6 +131,8 @@
   --color-glass: var(--glass-bg);
   --color-glass-border: var(--glass-border);
   --color-surface-solid: var(--surface-solid);
+  --color-well: var(--well-bg);
+  --color-well-border: var(--well-border);
 }
 
 @theme {
@@ -110,10 +143,11 @@
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 
   /*
-   * Maximum width shared by the header, the hero and every section (max-w-page). The side gutter
-   * is --header-gap, so the hero panel and the header bar have exactly the same width.
+   * Maximum widths: the header (max-w-page, gutter --header-gap) and, --section-inset narrower
+   * per side, the hero and the section cards (max-w-section, gutter --section-gutter).
    */
   --container-page: 80rem;
+  --container-section: calc(var(--container-page) - 2 * var(--section-inset));
 
   /*
    * Type scale (spec §7.4): rem only, nothing below 0.875rem. Fluid headings keep max <= 2.5 x min
@@ -126,6 +160,8 @@
   --text-base--line-height: 1.6;
   --text-lg: 1.125rem;
   --text-lg--line-height: 1.6;
+  --text-h4: clamp(1.125rem, 1.0625rem + 0.3125vw, 1.25rem);
+  --text-h4--line-height: 1.25;
   --text-h3: clamp(1.25rem, 1.125rem + 0.625vw, 1.5rem);
   --text-h3--line-height: 1.25;
   --text-h2: clamp(1.5rem, 1.25rem + 1.25vw, 2.25rem);
@@ -169,7 +205,8 @@
 
   h1,
   h2,
-  h3 {
+  h3,
+  h4 {
     font-family: var(--font-heading);
     text-wrap: balance;
   }
@@ -189,6 +226,12 @@
   h3 {
     font-size: var(--text-h3);
     line-height: var(--text-h3--line-height);
+    font-weight: 600;
+  }
+
+  h4 {
+    font-size: var(--text-h4);
+    line-height: var(--text-h4--line-height);
     font-weight: 600;
   }
 
@@ -218,15 +261,23 @@
 }
 
 @layer components {
-  /* Glass surface (spec §7.3): solid by default, translucent only where backdrop-filter works. */
+  /*
+   * Glass surface (spec §7.3): solid by default, translucent only where backdrop-filter works.
+   * .section-card-glass is the same surface, with its own outline (below).
+   */
+  .glass,
+  .section-card-glass {
+    background-color: var(--surface-solid);
+  }
+
   .glass {
     border: 1px solid var(--glass-border);
-    background-color: var(--surface-solid);
     box-shadow: var(--glass-highlight), var(--glass-shadow);
   }
 
   @supports (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px)) {
-    .glass {
+    .glass,
+    .section-card-glass {
       background-color: var(--glass-bg);
       -webkit-backdrop-filter: blur(14px) saturate(1.2);
       backdrop-filter: blur(14px) saturate(1.2);
@@ -234,10 +285,184 @@
   }
 
   @media (prefers-reduced-transparency: reduce), (prefers-contrast: more) {
-    .glass {
+    .glass,
+    .section-card-glass {
       background-color: var(--surface-solid);
       -webkit-backdrop-filter: none;
       backdrop-filter: none;
     }
+  }
+
+  /*
+   * Section card (SectionCard): the h2 sits in a tab joined to the top-left corner of the card.
+   * Tab and card share ONE glass surface, so the blur is continuous and the joint has no seam
+   * (two glass elements each blur only their own box, which leaves a step where the mesh changes
+   * fast). .section-card-glass covers the whole card; its clip-path (polygon arcs, error under
+   * 0.15px) cuts the tab's rounded corner, the concave fillet and the card's top-right corner.
+   * The tab's size comes from .section-card-shape, a size container in the tab's grid cell
+   * (100cqw x 100cqh); a container is not a containing block, so the glass inside it still spans
+   * the whole card. Outline with real borders: ::before draws the tab, ::after the card minus the
+   * part under the tab, and .section-card-fillet the concave arc.
+   */
+  .section-card {
+    --sc-r: 1.5rem; /* the card radius (rounded-3xl) */
+    --sc-f: 1rem; /* the concave fillet */
+
+    position: relative;
+    display: grid;
+    /* The tab grows with its title, up to where the fillet would reach the top-right corner. */
+    grid-template-columns:
+      fit-content(calc(100% - var(--sc-r) - var(--sc-f)))
+      minmax(0, 1fr);
+  }
+
+  .section-card-shape {
+    grid-area: 1 / 1;
+    container-type: size;
+  }
+
+  .section-card-shadow,
+  .section-card-glass,
+  .section-card-glass::before,
+  .section-card-glass::after,
+  .section-card-fillet {
+    position: absolute;
+    pointer-events: none;
+  }
+
+  /* Outer shadow of the card, painted before the glass so it never darkens the tab. */
+  .section-card-shadow {
+    inset: 100cqh 0 0;
+    border-radius: 0 var(--sc-r) var(--sc-r);
+    box-shadow: var(--glass-shadow);
+  }
+
+  .section-card-glass {
+    inset: 0;
+    border-radius: var(--sc-r) 0 var(--sc-r) var(--sc-r);
+    clip-path: polygon(
+      0 0,
+      calc(100cqw - var(--sc-r)) 0,
+      calc(100cqw - var(--sc-r) * 0.8049) calc(var(--sc-r) * 0.0192),
+      calc(100cqw - var(--sc-r) * 0.6173) calc(var(--sc-r) * 0.0761),
+      calc(100cqw - var(--sc-r) * 0.4444) calc(var(--sc-r) * 0.1685),
+      calc(100cqw - var(--sc-r) * 0.2929) calc(var(--sc-r) * 0.2929),
+      calc(100cqw - var(--sc-r) * 0.1685) calc(var(--sc-r) * 0.4444),
+      calc(100cqw - var(--sc-r) * 0.0761) calc(var(--sc-r) * 0.6173),
+      calc(100cqw - var(--sc-r) * 0.0192) calc(var(--sc-r) * 0.8049),
+      100cqw var(--sc-r),
+      100cqw calc(100cqh - var(--sc-f)),
+      calc(100cqw + var(--sc-f) * 0.0341) calc(100cqh - var(--sc-f) * 0.7412),
+      calc(100cqw + var(--sc-f) * 0.134) calc(100cqh - var(--sc-f) * 0.5),
+      calc(100cqw + var(--sc-f) * 0.2929) calc(100cqh - var(--sc-f) * 0.2929),
+      calc(100cqw + var(--sc-f) * 0.5) calc(100cqh - var(--sc-f) * 0.134),
+      calc(100cqw + var(--sc-f) * 0.7412) calc(100cqh - var(--sc-f) * 0.0341),
+      calc(100cqw + var(--sc-f)) 100cqh,
+      calc(100% - var(--sc-r)) 100cqh,
+      calc(100% - var(--sc-r) * 0.8049) calc(100cqh + var(--sc-r) * 0.0192),
+      calc(100% - var(--sc-r) * 0.6173) calc(100cqh + var(--sc-r) * 0.0761),
+      calc(100% - var(--sc-r) * 0.4444) calc(100cqh + var(--sc-r) * 0.1685),
+      calc(100% - var(--sc-r) * 0.2929) calc(100cqh + var(--sc-r) * 0.2929),
+      calc(100% - var(--sc-r) * 0.1685) calc(100cqh + var(--sc-r) * 0.4444),
+      calc(100% - var(--sc-r) * 0.0761) calc(100cqh + var(--sc-r) * 0.6173),
+      calc(100% - var(--sc-r) * 0.0192) calc(100cqh + var(--sc-r) * 0.8049),
+      100% calc(100cqh + var(--sc-r)),
+      100% 100%,
+      0 100%
+    );
+  }
+
+  .section-card-glass::before,
+  .section-card-glass::after,
+  .section-card-fillet {
+    content: '';
+    border: 0 solid var(--glass-border);
+  }
+
+  /*
+   * Tab: left, top and right edges with both rounded corners; the right edge stops where the
+   * fillet starts. The cut is 4px wide because borders snap to device pixels and clip-path does
+   * not: a 1px cut on a fractional width leaves a sliver. Nothing else is painted there.
+   */
+  .section-card-glass::before {
+    top: 0;
+    left: 0;
+    width: 100cqw;
+    height: 100cqh;
+    border-width: 1px 1px 0;
+    border-radius: var(--sc-r) var(--sc-r) 0 0;
+    box-shadow: var(--glass-highlight);
+    clip-path: polygon(
+      0 0,
+      100% 0,
+      100% calc(100% - var(--sc-f)),
+      calc(100% - 4px) calc(100% - var(--sc-f)),
+      calc(100% - 4px) 100%,
+      0 100%
+    );
+  }
+
+  /* Card: all four edges, minus the top border and highlight under the tab and the fillet. */
+  .section-card-glass::after {
+    inset: 100cqh 0 0;
+    border-width: 1px;
+    border-radius: 0 var(--sc-r) var(--sc-r);
+    box-shadow: var(--glass-highlight);
+    clip-path: polygon(
+      0 0,
+      1px 0,
+      1px 3px,
+      calc(100cqw + var(--sc-f)) 3px,
+      calc(100cqw + var(--sc-f)) 0,
+      100% 0,
+      100% 100%,
+      0 100%
+    );
+  }
+
+  /* Concave fillet: a quarter ring from the tab's right border to the card's top border. */
+  .section-card-fillet {
+    top: calc(100cqh - var(--sc-f));
+    left: calc(100cqw - 1px);
+    width: calc(var(--sc-f) + 1px);
+    height: calc(var(--sc-f) + 1px);
+    border-width: 0 0 1px 1px;
+    border-bottom-left-radius: calc(var(--sc-f) + 1px);
+  }
+
+  /* Tab and body paint above the glass (positioned, later in the tree). */
+  .section-card-tab {
+    grid-area: 1 / 1;
+    position: relative;
+  }
+
+  .section-card-body {
+    grid-row: 2;
+    grid-column: 1 / -1;
+    position: relative;
+  }
+
+  /*
+   * Highlight tabs (Experience). Without JS the panels are stacked, divided by a rule. With JS
+   * (data-theme is set by the anti-flicker script before the first paint, so this never shifts)
+   * they share one grid cell and only the active one is visible: the height never changes when
+   * switching, with no measuring in JS.
+   */
+  .tab-panels {
+    display: grid;
+    gap: 2rem;
+  }
+
+  :root:not([data-theme]) .tab-panels > * + * {
+    border-top: 1px solid var(--glass-border);
+    padding-top: 2rem;
+  }
+
+  :root[data-theme] .tab-panels > * {
+    grid-area: 1 / 1;
+  }
+
+  :root[data-theme] .tab-panels > :not([data-active]) {
+    visibility: hidden;
   }
 }
