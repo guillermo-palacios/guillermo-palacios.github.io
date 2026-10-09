@@ -1,0 +1,135 @@
+---
+// Projects (spec §6.3). Both projects share one SectionCard, so the section keeps a single glass
+// surface; they are articles split by a rule, each laid out like Experience: from lg, two columns
+// split by a thin rule. MoodNest: name, context, summary, applied engineering, the stack box and
+// the links on the left; on the right the five screenshots, the first one large and the others in
+// a 2 x 2 grid, all cropped to 4:3 by CSS (the app window sits inside the crop), with no JS. This
+// portfolio: name, summary and links on the left; decisions and Lighthouse metrics on the right.
+// Of projects.labels only engineering, stack, decisions and metrics are shown; summary and links
+// add nothing over the content (PLAN task 10). TODO values render through ui/Todo.
+// The vertical space is margin, not padding, so a jump to #projects lands on the tab.
+import { Picture } from 'astro:assets';
+import shot1 from '../../assets/moodnest/moodnest-1.jpg';
+import shot2 from '../../assets/moodnest/moodnest-2.jpg';
+import shot3 from '../../assets/moodnest/moodnest-3.jpg';
+import shot4 from '../../assets/moodnest/moodnest-4.jpg';
+import shot5 from '../../assets/moodnest/moodnest-5.jpg';
+import type { Locale } from '../../i18n/config';
+import { capitalizeFirst, getContent, isTodo } from '../../i18n/utils';
+import LinkPills from '../ui/LinkPills.astro';
+import SectionCard from '../ui/SectionCard.astro';
+import TechPill from '../ui/TechPill.astro';
+import Todo from '../ui/Todo.astro';
+
+interface Props {
+  lang: Locale;
+}
+
+const SECTION_ID = 'projects';
+const SCREENSHOTS = [shot1, shot2, shot3, shot4, shot5];
+// Rendered widths: the first screenshot fills the column, the others take half of it.
+const SIZES_LARGE = '(min-width: 64rem) 31rem, calc(100vw - 3.5rem)';
+const SIZES_SMALL = '(min-width: 64rem) 15rem, calc(50vw - 2rem)';
+
+const { lang } = Astro.props;
+const { projects, ui } = getContent(lang);
+const { labels, moodnest, portfolio } = projects;
+
+// The nav links to #projects: fail the build if the id ever drifts from ui.nav.items.
+if (!ui.nav.items.some(({ id }) => id === SECTION_ID)) {
+  throw new Error(`ui.nav.items has no "${SECTION_ID}" entry`);
+}
+
+// The alt texts pair with SCREENSHOTS by position.
+if (moodnest.screenshotAlts.length !== SCREENSHOTS.length) {
+  throw new Error(
+    `projects.moodnest.screenshotAlts (${lang}) needs ${SCREENSHOTS.length} entries`,
+  );
+}
+const screenshots = SCREENSHOTS.map((src, i) => ({
+  src,
+  alt: moodnest.screenshotAlts[i] ?? '',
+}));
+
+const titleId = `${SECTION_ID}-title`;
+const stackId = `${SECTION_ID}-moodnest-stack`;
+const cap = (text: string) => capitalizeFirst(text, lang);
+---
+
+<section
+  id={SECTION_ID}
+  aria-labelledby={titleId}
+  class="my-16 px-(--section-gutter) md:my-24"
+>
+  <SectionCard
+    titleId={titleId}
+    title={projects.title}
+    class="mx-auto max-w-section"
+  >
+    <article class="lg:grid lg:grid-cols-2">
+      <div class="lg:pe-10">
+        <h3>{moodnest.name}</h3>
+        <p class="mt-1 font-heading text-lg font-semibold text-accent">
+          {moodnest.context}
+        </p>
+        <p class="mt-4">{cap(moodnest.summary)}</p>
+        <h4 class="mt-8">{labels.engineering}</h4>
+        <p class="mt-2">{cap(moodnest.engineering)}</p>
+        <div class="mt-8 rounded-2xl border border-well-border bg-well p-4 shadow-(--well-shadow) sm:p-5">
+          <h4 id={stackId} class="text-base">
+            {labels.stack}
+          </h4>
+          <ul aria-labelledby={stackId} class="mt-3 flex flex-wrap gap-2">
+            {moodnest.stack.map((item) => (
+              <li>
+                <TechPill name={item} />
+              </li>
+            ))}
+          </ul>
+        </div>
+        <LinkPills links={moodnest.links} lang={lang} class="mt-8" />
+      </div>
+      <div class="mt-10 lg:mt-0 lg:border-s lg:border-glass-border lg:ps-10">
+        <ul class="grid grid-cols-2 gap-3">
+          {screenshots.map(({ src, alt }, i) => (
+            <li class={i === 0 ? 'col-span-2' : undefined}>
+              <Picture
+                src={src}
+                alt={alt}
+                formats={['avif', 'webp']}
+                fallbackFormat="webp"
+                widths={[400, 800]}
+                sizes={i === 0 ? SIZES_LARGE : SIZES_SMALL}
+                loading="lazy"
+                class="block aspect-4/3 h-auto w-full rounded-xl bg-well object-cover"
+              />
+            </li>
+          ))}
+        </ul>
+      </div>
+    </article>
+    <article class="mt-12 border-t border-glass-border pt-12 lg:mt-16 lg:grid lg:grid-cols-2 lg:pt-16">
+      <div class="lg:pe-10">
+        <h3>{portfolio.name}</h3>
+        <p class="mt-4">{cap(portfolio.summary)}</p>
+        <LinkPills links={portfolio.links} lang={lang} class="mt-8" />
+      </div>
+      <div class="mt-10 lg:mt-0 lg:border-s lg:border-glass-border lg:ps-10">
+        <h4>{labels.decisions}</h4>
+        <ul class="mt-3 list-disc space-y-2 ps-5 marker:text-accent">
+          {portfolio.decisions.map((decision) => (
+            <li>{cap(decision)}</li>
+          ))}
+        </ul>
+        <h4 class="mt-8">{labels.metrics}</h4>
+        <p class="mt-3">
+          {isTodo(portfolio.metrics) ? (
+            <Todo text={portfolio.metrics} />
+          ) : (
+            cap(portfolio.metrics)
+          )}
+        </p>
+      </div>
+    </article>
+  </SectionCard>
+</section>

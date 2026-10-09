@@ -2,7 +2,8 @@ Third-party notices
 
 Tabler Icons v3.49.0 - https://github.com/tabler/tabler-icons
 Icons used (icons/outline/): brand-github, brand-linkedin, brand-c-sharp, brand-javascript,
-brand-html5, brand-css3, brand-bootstrap, server, database and code
+brand-html5, brand-css3, brand-bootstrap, brand-react, brand-mongodb, brand-docker, server,
+database, code, api and test-pipe
 
 MIT License
 

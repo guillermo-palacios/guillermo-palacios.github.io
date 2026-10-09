@@ -123,6 +123,13 @@
       "links": [
         { "label": "repositorio de GitHub", "href": "TODO: URL" },
         { "label": "documentación", "href": "TODO: URL" }
+      ],
+      "screenshotAlts": [
+        "Página de inicio de MoodNest con el titular «Toma el control de tu bienestar emocional» y el botón «Comienza tu diario gratis»",
+        "Panel principal de MoodNest: saludo, contador de días seguidos, botón «Registrar mi Día» y la puntuación de los cinco últimos registros",
+        "Calendario de junio de 2026 con cada día coloreado según su puntuación y, al lado, el detalle del 26 de junio: puntuación global 9, comentario y etiquetas",
+        "Pantalla de análisis y estadísticas: gráfica de la evolución del estado de ánimo con la puntuación media mensual de febrero a agosto",
+        "Más estadísticas: los días con la etiqueta #Amigos mejoran 2 puntos, la puntuación media por día de la semana y un gráfico de anillo con el reparto de días según la nota"
       ]
     },
     "portfolio": {

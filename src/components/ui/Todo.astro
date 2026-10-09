@@ -1,0 +1,22 @@
+---
+// Pending content: strings starting with "TODO" (isTodo in i18n/utils) are shown highlighted, so
+// they cannot go unnoticed before launch (PLAN task 17 checks that dist/ has none left). Never a
+// link: a link whose href is still TODO passes its label, shown in front of the marker.
+interface Props {
+  text: string;
+  label?: string;
+  class?: string;
+}
+
+const { text, label, class: className } = Astro.props;
+---
+
+<mark
+  class:list={[
+    'inline-flex flex-wrap items-center gap-x-2 rounded-lg border border-dashed border-accent bg-well px-4 py-2 text-text',
+    className,
+  ]}
+>
+  {label && <span class="font-medium">{label}</span>}
+  <span class="font-mono text-sm text-accent">{text}</span>
+</mark>

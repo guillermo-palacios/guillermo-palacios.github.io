@@ -1,0 +1,38 @@
+---
+// A project's links as a row of pills (the hero's social pills, without icon). A link whose href
+// is still TODO renders as ui/Todo, with no href (PLAN task 10). Labels get a visual capital.
+import type { Link } from '../../content/types';
+import type { Locale } from '../../i18n/config';
+import { capitalizeFirst, isTodo } from '../../i18n/utils';
+import Todo from './Todo.astro';
+
+interface Props {
+  links: Link[];
+  lang: Locale;
+  class?: string;
+}
+
+const { links, lang, class: className } = Astro.props;
+---
+
+{links.length > 0 && (
+  <ul class:list={['flex flex-wrap gap-3', className]}>
+    {links.map(({ label, href }) => {
+      const text = capitalizeFirst(label, lang);
+      return (
+        <li>
+          {isTodo(href) ? (
+            <Todo label={text} text={href} class="min-h-11" />
+          ) : (
+            <a
+              href={href}
+              class="inline-flex min-h-11 items-center rounded-lg border border-glass-border px-4 font-medium text-text no-underline hover:border-accent hover:text-accent"
+            >
+              {text}
+            </a>
+          )}
+        </li>
+      );
+    })}
+  </ul>
+)}

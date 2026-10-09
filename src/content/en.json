@@ -123,6 +123,13 @@
       "links": [
         { "label": "GitHub repository", "href": "TODO: URL" },
         { "label": "documentation", "href": "TODO: URL" }
+      ],
+      "screenshotAlts": [
+        "MoodNest landing page (interface in Spanish): a headline about taking control of your emotional well-being and a button to start your diary for free",
+        "MoodNest dashboard: a greeting, a streak counter, a button to log the day and the scores of the last five entries",
+        "June 2026 calendar with each day colored by its score and, beside it, the details of 26 June: overall score 9, a comment and tags",
+        "Analysis and statistics screen: a chart of mood over time with the monthly average score from February to August",
+        "More statistics: days tagged #Amigos (friends) score 2 points higher, the average score by day of the week and a donut chart of days by score"
       ]
     },
     "portfolio": {

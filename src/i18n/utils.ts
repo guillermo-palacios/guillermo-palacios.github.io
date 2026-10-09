@@ -21,6 +21,11 @@ export function capitalizeFirst(text: string, lang: Locale): string {
   return first.toLocaleUpperCase(lang) + rest.join('');
 }
 
+// Pending content (types.ts): rendered through ui/Todo, never as plain text or as a link.
+export function isTodo(text: string): boolean {
+  return text.startsWith('TODO');
+}
+
 export function getLocalePath(lang: Locale): string {
   return `/${lang}/`;
 }

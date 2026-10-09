@@ -110,6 +110,7 @@ export interface SiteContent {
   };
   projects: {
     title: string;
+    // Field names from the spec; summary and links are not shown as visible text (PLAN task 10).
     labels: {
       summary: string;
       engineering: string;
@@ -125,6 +126,8 @@ export interface SiteContent {
       engineering: string;
       stack: string[];
       links: Link[];
+      // Alt texts of src/assets/moodnest/moodnest-1..5.jpg, in that order.
+      screenshotAlts: string[];
     };
     portfolio: {
       name: string;

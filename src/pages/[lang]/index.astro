@@ -1,8 +1,9 @@
 ---
-// One-page site: hero and experience so far; the other sections arrive in tasks 10–12.
+// One-page site: hero, experience and projects so far; the other sections arrive in tasks 11–12.
 import type { GetStaticPaths, InferGetStaticPropsType } from 'astro';
 import Experience from '../../components/sections/Experience.astro';
 import Hero from '../../components/sections/Hero.astro';
+import Projects from '../../components/sections/Projects.astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { LOCALES } from '../../i18n/config';
 
@@ -20,4 +21,5 @@ const { lang } = Astro.props;
 <BaseLayout lang={lang}>
   <Hero lang={lang} />
   <Experience lang={lang} />
+  <Projects lang={lang} />
 </BaseLayout>
