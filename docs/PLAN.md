@@ -28,12 +28,12 @@ src/
   components/
     layout/   Header, Nav, MobileMenu, LanguageSwitcher, ThemeToggle, SkipLink, SeoHead
     sections/ Hero, Experience, Projects, Stack, AiWorkflow, Education, Contact
-    ui/       GlassCard, Button, Chip, ChipList, Icon, SectionHeading, Todo
+    ui/       SectionCard, TechPill, GlassCard, Button, Icon, Todo
   content/    es.json, en.json, types.ts
   i18n/       config.ts, utils.ts
   layouts/    BaseLayout.astro
   pages/      [lang]/index.astro, index.astro (redirección)
-  scripts/    theme-toggle.ts
+  scripts/    theme-toggle.ts, tabs.ts
   styles/     global.css, fonts.css
 ```
 - **`[lang]/index.astro` con `getStaticPaths`.** Descartado: páginas `es/` y `en/` duplicadas, porque terminan divergiendo.
@@ -52,6 +52,7 @@ src/
 - **Tailwind v4** con `@tailwindcss/vite`. Descartado: v3 con `@astrojs/tailwind`, que está deprecada.
 - **`global.css`:** en `:root`, los tokens oscuros de §7.2 (`--bg`, `--text`, `--text-muted`, `--accent`, `--btn-bg`, `--btn-text`, `--focus`, `--glass-bg`, `--glass-border`, `--surface-solid`) y `color-scheme: dark`. En `:root[data-theme="light"]`, los claros. `@theme inline` mapea `--color-*` y `--font-*` a esas variables, lo que da utilidades como `bg-bg`, `text-muted` o `text-accent`. Descartado: la variante `dark:`, que duplica clases y saca los colores de los tokens.
 - **`.glass` y el mesh (`body::before`)** siguen §7.3: `@supports`, prefijo `-webkit-` y fallback para `prefers-reduced-transparency`/`prefers-contrast`.
+- **Anchos:** `--container-page` (80rem, `max-w-page`) para la cabecera y `--container-section` (`max-w-section`, 4rem menos por lado, `--section-inset`) para el hero y las tarjetas de sección, con margen lateral `--section-gutter` (desde `lg`, el de la cabecera más 4rem).
 - **Tema:** `:root` es oscuro. Hasta la tarea 13 el script fuerza oscuro salvo elección manual, para no mostrar un tema claro a medio pulir. Desde la tarea 13 se sigue `prefers-color-scheme` y luego la elección guardada, como pide §9. La desviación temporal queda anotada en la spec (tarea 2).
 - **Anti-parpadeo:** `<script is:inline>` al principio del `<head>` (menos de 300 B). Lee `localStorage` dentro de `try/catch` y pone `data-theme` antes del primer pintado. Descartado: un script de módulo, que se ejecuta después de pintar y produce parpadeo.
 
@@ -61,13 +62,13 @@ src/
 | BaseLayout | `lang`, SeoHead, preload de fuentes, anti-parpadeo, landmarks, `<main id="main">` | inline |
 | SeoHead | title, description, canonical, hreflang, OG, favicon, robots | — |
 | SkipLink | Saltar al contenido | — |
-| Header | Cabecera fija glass con logo, Nav, idioma, tema, CV y MobileMenu | — |
+| Header | Cabecera fija glass con logo, Nav, idioma, tema, CV y MobileMenu; desde `lg`, logo a la izquierda, Nav centrada y controles a la derecha | — |
 | Nav | Anclas (lista compartida con MobileMenu) | — |
 | MobileMenu | Popover API (`popovertarget`): botón con etiqueta fija (`ui.menu.label`) y el estado de `aria-expanded` nativo, sin cambiar el nombre; Esc y cierre al pulsar fuera nativos; un script mínimo lo cierra al pulsar un ancla y cuando el foco sale a la página | ~0,3 KB |
-| LanguageSwitcher | Enlace al otro idioma | — |
+| LanguageSwitcher | Enlace al otro idioma: texto visible «EN»/«ES» (`ui.languageShort`) y nombre accesible «EN, English»/«ES, Español» | — |
 | ThemeToggle | `<button>` sol/luna con dos etiquetas (`ui.theme.toLight` / `ui.theme.toDark`) que cambian con el estado, sin `aria-pressed`; guarda la elección | ~0,5 KB |
 | Hero | h1, subtítulo, retrato `<Picture fetchpriority=high>`, CTAs, slot de decoración | — |
-| Experience | Cordoware: hitos y chips | — |
+| Experience | Cordoware en SectionCard: datos y tecnologías (TechPill) a la izquierda, hitos en pestañas APG a la derecha | ~0,65 KB |
 | Projects | Caso de estudio de MoodNest (capturas lazy) y portfolio con `TODO` | — |
 | Stack | Áreas con chips principales y secundarios | — |
 | AiWorkflow | Lista breve | — |
@@ -77,7 +78,7 @@ src/
 
 - **MobileMenu con Popover API.** Descartado: un script propio con `aria-expanded`, que reimplementa Esc y el foco. Descartado: `<details>`, que no se cierra con Esc ni al pulsar fuera.
 - **Sin React.** Descartado `@astrojs/react` para el toggle: unos 45 KB de runtime sin necesidad.
-- **Icon:** mapa TypeScript de paths SVG (marcas copiadas de Simple Icons, CC0, sin instalar el paquete).
+- **Icon:** mapa TypeScript de paths SVG (copiados de Tabler Icons v3.49.0, MIT, sin instalar el paquete).
 - **JS total:** menos de 2 KB.
 
 ## 5. Fuentes e imágenes
@@ -109,6 +110,8 @@ src/
 ## 8. Tareas
 Cada tarea va en su propia rama, con el contenido del commit confirmado contigo y merge a `main` cuando `build` pasa. Al completar una tarea se marca su casilla.
 
+**Modo MVP (desde la tarea 9):** la verificación de cada tarea se limita a `lint`, `check`, `build` y a que no haya scroll horizontal a 390 y 1280 px, en ES y EN. Contraste, zoom, WCAG 1.4.12 y lector de pantalla solo si se piden; la auditoría completa queda para la tarea 14.
+
 - [x] **1. `chore/scaffold`**: Astro + TS strictest + Tailwind v4 + sitemap + `astro.config` + `src/config.ts` (`SITE_INDEXABLE=false`); página placeholder con `noindex`.
   *Acepta:* `npm run dev` sirve la página; `build` y `check` pasan; `dist/` contiene `noindex`.
 - [x] **2. `chore/quality`**: ESLint, Prettier, `.prettierignore`, `.editorconfig`, hook; spec §10 (hook = lint + check, build antes del merge) y §9 (nota: tema forzado a oscuro hasta la tarea 13).
@@ -134,7 +137,13 @@ Cada tarea va en su propia rama, con el contenido del commit confirmado contigo 
   *Nota:* el `alt` del retrato se escribe aquí (en los JSON). Las imágenes usan `<Picture>` con `fallbackFormat="webp"`: con un máster WebP, Astro genera por defecto el `<img>` de respaldo en PNG, mucho más pesado.
 - [ ] **9. `feat/experience`**.
   *Acepta:* texto idéntico a §6.2; chips en monoespaciada.
-  *Nota:* las etiquetas de campo del JSON (`experience.labels`) vienen de nombres de campo de la spec y no están aprobadas como texto visible; se decide una a una cuáles se muestran y con qué texto.
+  *Nota (resuelta):* las etiquetas de campo del JSON (`experience.labels`) vienen de nombres de campo de la spec y no están aprobadas como texto visible; se decide una a una cuáles se muestran y con qué texto. No se muestra ninguna como texto visible: ni `context` («Contexto» / «Context») ni `highlights` («Hitos» / «Highlights»); se quedan en el JSON. `highlights` es el nombre accesible (`aria-label`) de la lista de pestañas de los hitos (aprobado). El contexto va en el mismo párrafo que la descripción, detrás de ella.
+  *Nota:* claves nuevas (aprobadas): `experience.technologiesLabel` («Tecnologías utilizadas» / «Technologies used»), título (h4) del recuadro de tecnologías; `experience.items[].highlights[].tab` («CRM», «Legacy», «Backend», iguales en ES y EN), etiqueta corta de cada pestaña, mientras el panel muestra el título completo como h4; y `ui.languageShort` («EN» / «ES»), texto visible del selector de idioma, cuyo nombre accesible es «EN, English» / «ES, Español» (mantiene `lang` y `hreflang`). El periodo ya no lleva «(6 meses)», como §6.2.
+  *Nota:* ancho: el hero y las tarjetas de sección usan `--container-section` (`max-w-section`, 4rem menos por lado que `--container-page`, `--section-inset`) y, desde `lg`, el margen lateral `--section-gutter`, así que la barra de la cabecera sobresale a los lados; por debajo de `lg` miden lo mismo que la cabecera. La cabecera, desde `lg`, es una rejilla de tres columnas: logo a la izquierda, Nav centrada en la barra y controles (idioma, tema, CV) a la derecha; a 1024 px no desborda.
+  *Nota:* mayúscula inicial al renderizar con `capitalizeFirst(texto, lang)` (`i18n/utils`, `toLocaleUpperCase`), sin tocar el JSON; no se aplica a nombres de tecnología (jQuery).
+  *Nota (patrón para las secciones 10–12):* título de sección en pestaña con `ui/SectionCard`: el h2 va en una pestaña unida a la esquina superior izquierda de la tarjeta, con esquina cóncava en la unión. Pestaña y tarjeta comparten un único elemento glass (un `backdrop-filter` por sección), recortado con `clip-path`; el tamaño de la pestaña llega por unidades de contenedor (`cqw`/`cqh`). Con dos elementos glass había un escalón de hasta 3/255 en la unión, porque cada desenfoque solo ve su caja. Coste medido: cualquier `container-type` hace que Chromium maquete antes de que lleguen las fuentes y otra vez al llegar (+60 ms de primer pintado en local, sin diferencia apreciable con red y CPU limitadas).
+  *Nota (compartido para las tareas 10 y 11):* las tecnologías son píldoras `ui/TechPill`, con el estilo de las de GitHub y LinkedIn del hero (borde sutil, mismo radio, icono y nombre visible en monoespaciada, §7.4), sin colores de marca y sin ser enlaces (sin hover, sin foco, cursor normal). Cada tecnología se resuelve por su texto exacto en el mapa de `TechPill.astro`; si falta, píldora sin icono y aviso en el build. Iconos de Tabler Icons v3.49.0 (MIT) en `ui/Icon`, copiados sin modificar: marca para C#, JavaScript, HTML5, CSS3 y Bootstrap, y genéricos donde Tabler no tiene marca: `server` (ASP.NET Framework), `database` (SQL Server) y `code` (jQuery).
+  *Nota:* pestañas de los hitos según el patrón APG (`scripts/tabs.ts`, unos 650 B; JS total 1393 B). Sin JS, los hitos se apilan, cada uno con su h4. Con JS, los paneles comparten una celda de rejilla y los inactivos van con `visibility: hidden`, así que la altura no cambia. El cambio depende de `data-theme`, que el script anti-parpadeo pone antes del primer pintado.
 - [ ] **10. `feat/projects`**.
   *Acepta:* caso de estudio escaneable; capturas lazy con `alt`; `TODO` visibles; sin botón de demo.
   *Nota:* las etiquetas de campo del JSON (`projects.labels`) vienen de nombres de campo de la spec y no están aprobadas como texto visible; se decide una a una cuáles se muestran y con qué texto.
@@ -155,6 +164,8 @@ Cada tarea va en su propia rama, con el contenido del commit confirmado contigo 
 - [ ] **14. `chore/a11y-audit`**, en los dos temas.
   *Acepta:* Lighthouse ≥ 95 ×4 en móvil y escritorio; axe limpio; zoom al 200 % y 320 px correctos; navegación solo con teclado.
   *Nota:* repetir en toda la web la comprobación de WCAG 1.4.12 (line-height 1,5; letter-spacing 0,12em; word-spacing 0,16em; 2em tras los párrafos), que en la tarea 7 solo se hizo en la cabecera.
+  *Nota:* probar la pestaña del título de sección (`ui/SectionCard`: `clip-path` + `backdrop-filter` + unidades de contenedor) en Firefox y Safari; en la tarea 9 solo se probó en Chromium (Edge).
+  *Nota:* revisar el impacto de `container-type` en el LCP: en local añade unos 60 ms al primer pintado (Chromium maqueta antes de que lleguen las fuentes y otra vez al llegar); con red y CPU limitadas no se apreció diferencia. Medirlo con Lighthouse sobre el sitio desplegado.
   *Nota:* comprobar la compatibilidad con Safari 16 y la cuota real de ese navegador. La Popover API llega en Safari 17: sin ella, el panel del menú móvil no se oculta. Con esos datos se decide si hace falta un fallback (la tarea 6 no añadió ninguno).
 - [ ] **15. `feat/seo-assets`**: favicon y OG (según tu diseño) + revisión de la traducción EN.
   *Acepta:* OG válido en el depurador de LinkedIn; EN revisado por ti.
