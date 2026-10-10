@@ -83,16 +83,16 @@ No hay sección "Sobre mí" independiente: hero y formación la cubren.
 **Proyecto 1 — MoodNest (TFG, calificación 9,5)**
 - **Resumen:** aplicación web de seguimiento diario del estado de ánimo frente al estrés y la hiperdigitalización. Registro contextualizado de emociones y actividades, con un módulo completo de análisis de datos.
 - **Ingeniería aplicada:** ciclo de vida completo (requisitos, arquitectura física/lógica/de datos, implementación, testing y validación de requisitos no funcionales: rendimiento, seguridad, usabilidad). Gestión ágil con GitHub: Issues, Milestones y tablero Kanban.
-- **Stack:** React.js + Tailwind CSS · API REST en Java con Spring Boot y autenticación stateless con JWT · MongoDB (modelo orientado a documentos) · JUnit, Mockito y Postman · Docker.
-- **Material visual:** 4–5 capturas de la interfaz en `src/assets/moodnest/`. **No hay demo desplegada**: usar capturas y enlace a documentación.
-- **Enlaces:** repositorio de GitHub (`TODO: URL`), documentación (`TODO: URL`). No mostrar botón de demo.
+- **Stack:** React · Tailwind CSS · Java · Spring Boot · MongoDB · JWT · JUnit · Mockito · Postman · Docker · Git.
+- **Material visual:** 4–5 capturas de la interfaz en `src/assets/moodnest/`. **No hay demo desplegada**: usar capturas.
+- **Enlaces:** repositorio de GitHub (`https://github.com/guillermo-palacios/tfg-moodnest`). No mostrar botón de demo.
 - Presentación como caso de estudio escaneable: problema → decisiones de arquitectura → stack → testing → resultado.
 
 **Proyecto 2 — Este portfolio**
 - **Resumen:** sitio estático bilingüe construido con Astro, TypeScript y Tailwind, desarrollado con flujo asistido por IA (Claude Code).
 - **Decisiones a destacar:** rendimiento (JS mínimo, fuentes autoalojadas, imágenes AVIF/WebP), accesibilidad WCAG 2.2 AA, tema claro/oscuro con tokens CSS, glassmorphism con fallbacks.
 - **Métricas Lighthouse:** `TODO` — se rellenan con mediciones reales cuando el sitio esté desplegado. No escribir cifras estimadas.
-- **Enlaces:** repositorio (`TODO: URL`) y sitio en vivo (`TODO: URL`).
+- **Enlaces:** repositorio (`https://github.com/guillermo-palacios/guillermo-palacios.github.io`).
 
 *YouTube Media Converter queda fuera hasta que exista repositorio.*
 
@@ -219,7 +219,6 @@ Objetivos de trabajo, no cifras garantizadas:
 ## 12. Pendientes conocidos
 
 - Certificaciones (se rellenarán más adelante).
-- URLs de MoodNest (repositorio y documentación) y del repositorio y sitio del portfolio.
 - Métricas Lighthouse del propio portfolio (tras medir).
 - Compra y configuración del dominio.
 - Traducción al inglés del contenido (la redacta Claude, la revisa Guillermo).

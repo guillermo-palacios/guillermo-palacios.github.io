@@ -124,6 +124,7 @@ export interface SiteContent {
       context: string;
       summary: string;
       engineering: string;
+      // One technology name per entry, the same in ES and EN: one TechPill each.
       stack: string[];
       links: Link[];
       // Alt texts of src/assets/moodnest/moodnest-1..5.jpg, in that order.

@@ -114,15 +114,23 @@
       "summary": "web application for daily mood tracking in the face of stress and hyper-digitalization. Contextualized logging of emotions and activities, with a complete data analysis module.",
       "engineering": "complete lifecycle (requirements, physical/logical/data architecture, implementation, testing and validation of non-functional requirements: performance, security, usability). Agile management with GitHub: Issues, Milestones and Kanban board.",
       "stack": [
-        "React.js + Tailwind CSS",
-        "REST API in Java with Spring Boot and stateless authentication with JWT",
-        "MongoDB (document-oriented model)",
-        "JUnit, Mockito and Postman",
-        "Docker"
+        "React",
+        "Tailwind CSS",
+        "Java",
+        "Spring Boot",
+        "MongoDB",
+        "JWT",
+        "JUnit",
+        "Mockito",
+        "Postman",
+        "Docker",
+        "Git"
       ],
       "links": [
-        { "label": "GitHub repository", "href": "TODO: URL" },
-        { "label": "documentation", "href": "TODO: URL" }
+        {
+          "label": "GitHub repository",
+          "href": "https://github.com/guillermo-palacios/tfg-moodnest"
+        }
       ],
       "screenshotAlts": [
         "MoodNest landing page (interface in Spanish): a headline about taking control of your emotional well-being and a button to start your diary for free",
@@ -143,8 +151,10 @@
       ],
       "metrics": "TODO — to be filled in with real measurements once the site is deployed.",
       "links": [
-        { "label": "repository", "href": "TODO: URL" },
-        { "label": "live site", "href": "TODO: URL" }
+        {
+          "label": "repository",
+          "href": "https://github.com/guillermo-palacios/guillermo-palacios.github.io"
+        }
       ]
     }
   },

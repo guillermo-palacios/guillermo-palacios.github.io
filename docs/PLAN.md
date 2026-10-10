@@ -149,6 +149,7 @@ Cada tarea va en su propia rama, con el contenido del commit confirmado contigo 
   *Nota:* las etiquetas de campo del JSON (`projects.labels`) vienen de nombres de campo de la spec y no están aprobadas como texto visible; se decide una a una cuáles se muestran y con qué texto.
   *Nota:* `ui/Todo` muestra los enlaces con `TODO` como texto resaltado, sin `href`.
   *Nota:* los `alt` de las cinco capturas (`src/assets/moodnest/moodnest-1..5.jpg`) se escriben aquí (en los JSON).
+  *Nota (`fix/projects`):* enlace a la documentación del TFG descartado (quizá en el futuro, una Release limpia en `tfg-moodnest`). Enlace «sitio en vivo» del portfolio eliminado por redundante.
 - [ ] **11. `feat/stack-ai`**.
   *Acepta:* dos niveles sin barras; sin hipérboles.
   *Nota:* las etiquetas de campo del JSON (`stack.columns`) vienen de nombres de campo de la spec y no están aprobadas como texto visible; se decide una a una cuáles se muestran y con qué texto.

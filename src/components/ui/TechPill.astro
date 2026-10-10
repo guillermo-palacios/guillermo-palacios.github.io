@@ -3,8 +3,7 @@
 // GitHub/LinkedIn pill (subtle border, same radius, icon + visible name), but not a link, so no
 // hover, focus or pointer. Keys are the exact texts from the JSON. Technologies without a Tabler
 // brand icon use a generic Tabler one; a name missing here renders without icon and warns at build.
-// MoodNest's stack entries are phrases, so the ones that differ are keyed in both languages. Long
-// phrases wrap inside the pill (py-2 keeps them off the border).
+// py-2 keeps a name that wraps (narrow screens, WCAG 1.4.12 spacing) off the border.
 import Icon, { type IconName } from './Icon.astro';
 
 const TECH_ICONS: Readonly<Record<string, IconName>> = {
@@ -16,15 +15,17 @@ const TECH_ICONS: Readonly<Record<string, IconName>> = {
   HTML5: 'html5',
   CSS3: 'css3',
   'Bootstrap 5': 'bootstrap',
-  'React.js + Tailwind CSS': 'react',
-  'API REST en Java con Spring Boot y autenticación stateless con JWT': 'api',
-  'REST API in Java with Spring Boot and stateless authentication with JWT':
-    'api',
-  'MongoDB (modelo orientado a documentos)': 'mongodb',
-  'MongoDB (document-oriented model)': 'mongodb',
-  'JUnit, Mockito y Postman': 'test',
-  'JUnit, Mockito and Postman': 'test',
+  React: 'react',
+  'Tailwind CSS': 'tailwind',
+  Java: 'coffee',
+  'Spring Boot': 'leaf',
+  MongoDB: 'mongodb',
+  JWT: 'key',
+  JUnit: 'test',
+  Mockito: 'masks',
+  Postman: 'send',
   Docker: 'docker',
+  Git: 'git',
 };
 
 interface Props {

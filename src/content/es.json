@@ -114,15 +114,23 @@
       "summary": "aplicación web de seguimiento diario del estado de ánimo frente al estrés y la hiperdigitalización. Registro contextualizado de emociones y actividades, con un módulo completo de análisis de datos.",
       "engineering": "ciclo de vida completo (requisitos, arquitectura física/lógica/de datos, implementación, testing y validación de requisitos no funcionales: rendimiento, seguridad, usabilidad). Gestión ágil con GitHub: Issues, Milestones y tablero Kanban.",
       "stack": [
-        "React.js + Tailwind CSS",
-        "API REST en Java con Spring Boot y autenticación stateless con JWT",
-        "MongoDB (modelo orientado a documentos)",
-        "JUnit, Mockito y Postman",
-        "Docker"
+        "React",
+        "Tailwind CSS",
+        "Java",
+        "Spring Boot",
+        "MongoDB",
+        "JWT",
+        "JUnit",
+        "Mockito",
+        "Postman",
+        "Docker",
+        "Git"
       ],
       "links": [
-        { "label": "repositorio de GitHub", "href": "TODO: URL" },
-        { "label": "documentación", "href": "TODO: URL" }
+        {
+          "label": "repositorio de GitHub",
+          "href": "https://github.com/guillermo-palacios/tfg-moodnest"
+        }
       ],
       "screenshotAlts": [
         "Página de inicio de MoodNest con el titular «Toma el control de tu bienestar emocional» y el botón «Comienza tu diario gratis»",
@@ -143,8 +151,10 @@
       ],
       "metrics": "TODO — se rellenan con mediciones reales cuando el sitio esté desplegado.",
       "links": [
-        { "label": "repositorio", "href": "TODO: URL" },
-        { "label": "sitio en vivo", "href": "TODO: URL" }
+        {
+          "label": "repositorio",
+          "href": "https://github.com/guillermo-palacios/guillermo-palacios.github.io"
+        }
       ]
     }
   },
